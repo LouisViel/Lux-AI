@@ -16,6 +16,5 @@ set CURDIR_UNIX=%CURDIR:\=/%
 set DRIVE=%CURDIR_UNIX:~0,1%
 set PATH_UNIX=/%DRIVE%%CURDIR_UNIX:~2%
 
-"%MSYS2_BASH%" --login -i -c "export PATH=/mingw64/bin:$PATH && cd %PATH_UNIX% && make"
-REM && read -p 'Press Enter to exit...'
-pause
+"%MSYS2_BASH%" --login -i -c "export PATH=/mingw64/bin:$PATH && cd %PATH_UNIX% && make clean"
+REM pause
