@@ -1,0 +1,5 @@
+install: msys2-x86_64-20250622.exe
+open: MSYS2 MinGW64 Shell
+run: pacman -Syu
+run: pacman -S mingw-w64-x86_64-gcc
+run: pacman -S make
