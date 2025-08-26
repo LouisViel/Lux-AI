@@ -134,6 +134,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="modules\goap\AgentAction.cpp" />
+    <ClCompile Include="modules\goap\AgentGoal.cpp" />
     <ClCompile Include="modules\goap\GoapAgent.cpp" />
     <ClCompile Include="modules\goap\BeliefFactory.cpp" />
     <ClCompile Include="modules\goap\AgentBelief.cpp" />
@@ -141,9 +143,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="modules\goap\AgentAction.hpp" />
+    <ClInclude Include="modules\goap\AgentGoal.hpp" />
+    <ClInclude Include="modules\goap\AgentSensor.hpp" />
     <ClInclude Include="modules\goap\GoapAgent.hpp" />
     <ClInclude Include="modules\goap\BeliefFactory.hpp" />
+    <ClInclude Include="modules\goap\IActionStrategy.hpp" />
     <ClInclude Include="modules\goap\Module.hpp" />
+    <ClInclude Include="modules\utils\Event.hpp" />
     <ClInclude Include="modules\utils\make_unique.hpp" />
     <ClInclude Include="modules\goap\AgentBelief.hpp" />
     <ClInclude Include="lux\annotate.hpp" />
@@ -155,9 +162,11 @@
     <ClInclude Include="lux\map.hpp" />
     <ClInclude Include="lux\nlohmann\json.hpp" />
     <ClInclude Include="lux\position.hpp" />
+    <ClInclude Include="modules\utils\WeakPtr.hpp" />
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="lux\game_constants.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
