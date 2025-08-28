@@ -1,13 +1,13 @@
 @echo off
 
-
 REM PREVIOUS WAYS OF BUILDING PROJECT
 REM g++ main.cpp -O3 -std=c++11 -I. -o main.out
-REM g++ $(find project modules -name "*.cpp") main.cpp -O3 -std=c++11 -I. -o main.out
 REM make clean // Clean project before building
 REM mingw32-make // Alternative for windows without linux
 REM pause
 
+REM ALTERNATIVE BUILD COMMAND (BUILD EVERYTHING, not only modified files)
+REM g++ $(find project modules -name "*.cpp") main.cpp -O3 -std=c++11 -I. -o main.out
 
 REM BUILD PROJECT USING Make
 set MSYS2_BASH=C:\msys64\usr\bin\bash.exe
