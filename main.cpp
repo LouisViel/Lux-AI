@@ -16,7 +16,7 @@ int main()
   // initialize
   gameState.initialize();
 
-  BeliefFactory test = BeliefFactory(std::weak_ptr<GoapAgent>(std::make_shared<GoapAgent>()), std::map<std::string, std::shared_ptr<AgentBelief>>());
+  //BeliefFactory test = BeliefFactory(std::weak_ptr<GoapAgent>(std::make_shared<GoapAgent>()), std::map<std::string, std::shared_ptr<AgentBelief>>());
 
   while (true)
   {

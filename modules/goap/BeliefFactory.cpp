@@ -1,9 +1,10 @@
 #include "BeliefFactory.hpp"
 #include "GoapAgent.hpp"
 #include "AgentSensor.hpp"
+#include "AgentBelief.hpp"
 
 
-BeliefFactory::BeliefFactory(std::weak_ptr<GoapAgent> agent, std::map<std::string, std::shared_ptr<AgentBelief>> beliefs)
+BeliefFactory::BeliefFactory(const std::weak_ptr<GoapAgent> agent, const BeliefMapPtr beliefs)
 	: agent(agent), beliefs(beliefs) { }
 
 BeliefFactory::~BeliefFactory() { }
@@ -16,7 +17,10 @@ BeliefFactory::~BeliefFactory() { }
 
 void BeliefFactory::addLocationBelief(const std::string& key, float distance, Position locationCondition)
 {
-	beliefs.insert(std::make_pair(key, AgentBelief::Builder(key)
+	std::shared_ptr<BeliefMap> beliefPtr = beliefs.lock();
+	if (!beliefPtr) return;
+
+	beliefPtr->insert(std::make_pair(key, AgentBelief::Builder(key)
 		.withCondition([locationCondition, distance, this]() { return inRangeOf(locationCondition, distance); })
 		.withLocation([locationCondition]() { return locationCondition; })
 		.buildShared()
@@ -25,7 +29,10 @@ void BeliefFactory::addLocationBelief(const std::string& key, float distance, Po
 
 void BeliefFactory::addSensorBelief(const std::string& key, std::weak_ptr<AgentSensor> sensor)
 {
-	beliefs.insert(std::make_pair(key, AgentBelief::Builder(key)
+	std::shared_ptr<BeliefMap> beliefPtr = beliefs.lock();
+	if (!beliefPtr) return;
+
+	beliefPtr->insert(std::make_pair(key, AgentBelief::Builder(key)
 		.withCondition([sensor]() {
 			if (std::shared_ptr<AgentSensor> ptr = sensor.lock()) {
 				return ptr->isTargetInRange();

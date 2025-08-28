@@ -26,3 +26,8 @@ using WeakPtrUnorderedSet = std::unordered_set<
     WeakPtrHash<T>,
     WeakPtrEqual<T>
 >;
+
+template <typename T>
+using SharedPtrUnorderedSet = std::unordered_set<
+    std::shared_ptr<T>
+>;

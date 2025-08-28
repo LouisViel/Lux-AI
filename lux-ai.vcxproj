@@ -134,6 +134,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="modules\goap\ActionPlan.cpp" />
+    <ClCompile Include="modules\goap\GoapPlanner.cpp" />
     <ClCompile Include="modules\goap\AgentAction.cpp" />
     <ClCompile Include="modules\goap\AgentGoal.cpp" />
     <ClCompile Include="modules\goap\GoapAgent.cpp" />
@@ -141,8 +143,11 @@
     <ClCompile Include="modules\goap\AgentBelief.cpp" />
     <ClCompile Include="lux\define.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="modules\utils\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="modules\goap\ActionPlan.hpp" />
+    <ClInclude Include="modules\goap\GoapPlanner.hpp" />
     <ClInclude Include="modules\goap\AgentAction.hpp" />
     <ClInclude Include="modules\goap\AgentGoal.hpp" />
     <ClInclude Include="modules\goap\AgentSensor.hpp" />

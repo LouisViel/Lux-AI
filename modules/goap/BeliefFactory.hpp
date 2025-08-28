@@ -1,5 +1,7 @@
 #pragma once
 #include "AgentBelief.hpp"
+#include "Module.hpp"
+
 class GoapAgent;
 class AgentSensor;
 
@@ -7,11 +9,11 @@ class BeliefFactory
 {
 private:
 	const std::weak_ptr<GoapAgent> agent;
-	std::map<std::string, std::shared_ptr<AgentBelief>> beliefs;
+	const BeliefMapPtr beliefs;
 
 public:
 	BeliefFactory() = delete;
-	BeliefFactory(std::weak_ptr<GoapAgent> agent, std::map<std::string, std::shared_ptr<AgentBelief>> beliefs);
+	BeliefFactory(const std::weak_ptr<GoapAgent> agent, const BeliefMapPtr beliefs);
 	~BeliefFactory();
 
 	// Template - void addBelief(std::string key, FuncBool condition);
@@ -29,7 +31,10 @@ public:
 	template<typename Func, typename = typename std::enable_if<std::is_convertible<Func, FuncBool>::value>::type>
 	void addBelief(const std::string& key, Func&& condition)
 	{
-		beliefs.insert(std::make_pair(key, AgentBelief::Builder(key)
+		std::shared_ptr<BeliefMap> beliefPtr = beliefs.lock();
+		if (!beliefPtr) return;
+
+		beliefPtr->insert(std::make_pair(key, AgentBelief::Builder(key)
 			.withCondition(std::forward<Func>(condition))
 			.buildShared()
 		));
@@ -53,8 +58,11 @@ public:
 	template<typename Func, typename = typename std::enable_if<std::is_convertible<Func, FuncPosition>::value>::type>
 	void addLocationBelief(const std::string& key, float distance, Func&& locationProvider)
 	{
+		std::shared_ptr<BeliefMap> beliefPtr = beliefs.lock();
+		if (!beliefPtr) return;
+
 		std::shared_ptr<FuncPosition> locProv = std::make_shared<FuncPosition>(std::forward<Func>(locationProvider));
-		beliefs.insert(std::make_pair(key, AgentBelief::Builder(key)
+		beliefPtr->insert(std::make_pair(key, AgentBelief::Builder(key)
 
 			.withCondition([locProv, distance, this]() {
 				FuncPosition& provider = *locProv;

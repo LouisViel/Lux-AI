@@ -3,7 +3,7 @@
 class IActionStrategy
 {
 public:
-	virtual ~IActionStrategy() { }
+	virtual ~IActionStrategy() = default;
 
 	virtual bool canPerform() const = 0;
 	virtual bool isComplete() const = 0;

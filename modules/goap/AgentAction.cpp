@@ -59,12 +59,10 @@ void AgentAction::update(int turnId)
 		strategy->update(turnId);
 
 	if (!strategy->isComplete()) return;
-
 	for (const std::weak_ptr<AgentBelief>& effect : effects) {
 		if (std::shared_ptr<AgentBelief> ptr = effect.lock())
 			ptr->evaluate();
 	}
-		
 }
 
 void AgentAction::stop()
