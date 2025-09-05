@@ -13,3 +13,15 @@ Position GoapAgent::getPosition() const
 	if (!this->position) return Position();
 	return this->position();
 }
+
+float GoapAgent::getPathCost() const
+{
+	return pathCost;
+}
+
+float GoapAgent::calculatePath(Position target)
+{
+	if (!this->path) pathCost = -1.0f;
+	else pathCost = this->path(target);
+	return pathCost;
+}

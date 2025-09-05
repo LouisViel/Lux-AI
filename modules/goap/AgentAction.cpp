@@ -46,6 +46,14 @@ const WeakPtrUnorderedSet<AgentBelief>& AgentAction::getEffects() const
 //////////////////////////////////////////////////////////////////
 
 
+bool AgentAction::canStart() const
+{
+	for (const std::weak_ptr<AgentBelief>& precondition : preconditions) {
+		const std::shared_ptr<AgentBelief> ptr = precondition.lock();
+		if (!ptr || !ptr->evaluate()) return false;
+	} return true;
+}
+
 void AgentAction::start()
 {
 	if (!strategy) return;

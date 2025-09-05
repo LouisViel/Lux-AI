@@ -29,9 +29,11 @@ public:
 	const WeakPtrUnorderedSet<AgentBelief>& getPreconditions() const;
 	const WeakPtrUnorderedSet<AgentBelief>& getEffects() const;
 
+	bool canStart() const;
 	void start();
 	void update(int turnId);
 	void stop();
+	
 
 	//////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////

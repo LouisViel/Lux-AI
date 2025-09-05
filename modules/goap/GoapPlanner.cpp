@@ -94,8 +94,15 @@ std::shared_ptr<ActionPlan> GoapPlanner::plan(const std::shared_ptr<GoapAgent>& 
 
 bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrUnorderedSet<AgentAction>& actions)
 {
+	// Sort Actions in cost order
+	std::vector<std::shared_ptr<AgentAction>> sortedActions(actions.begin(), actions.end());
+	std::sort(sortedActions.begin(), sortedActions.end(),
+		[](const std::shared_ptr<AgentAction>& a, const std::shared_ptr<AgentAction>& b) {
+			return a->getCost() < b->getCost();
+	});
+
 	// Check all actions if there is a path to fulffill parent
-	for (const std::shared_ptr<AgentAction>& action : actions) {
+	for (const std::shared_ptr<AgentAction>& action : sortedActions) {
 		
 		// Remove required effects already fullfilled (RemoveWhere)
 		WeakPtrUnorderedSet<AgentBelief>& requiredEffects = parent->getRequiredEffects();
