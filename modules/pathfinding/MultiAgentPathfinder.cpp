@@ -49,7 +49,7 @@ AgentPath MultiAgentPathfinder::getPath(int agentId) const
 
 bool MultiAgentPathfinder::hasPath(int agentId) const
 {
-	return getPath(agentId).size() > 0;
+	return getPath(agentId).isValid();
 }
 
 

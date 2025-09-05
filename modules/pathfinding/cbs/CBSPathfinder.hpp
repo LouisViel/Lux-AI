@@ -6,7 +6,7 @@
 class CBSPathfinder : public IPathfindingMultiAlgorithm
 {
 private:
-    static constexpr int MAX_NODES = 150;
+    static constexpr int MAX_NODES = 400;
 
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
@@ -19,6 +19,11 @@ private:
         Constraints constraints; // contraintes cumulées
         float cost = 0.0f; // coût total des chemins
         float heuristic = 0.0f; // heuristic total des chemins
+
+        // Cache des conflits connus
+        int conflictCount = -1; // -1 => non calculé
+        ConflictMap conflicts; // conflict by agent group
+        std::unique_ptr<Conflict> lastConflict; // dernier conflit mis en cache
 
     public:
         Node() = default;
@@ -40,6 +45,8 @@ private:
         { }
     };
 
+    typedef std::shared_ptr<CBSPathfinder::Node> NodePtr;
+
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
 
@@ -53,28 +60,30 @@ public:
 
 public:
 	// Template - CBSPathfinder(std::shared_ptr<IPathfindingAlgorithm> algorithm);
-
     virtual std::map<int, AgentPath> computePaths(
         const std::vector<AgentInput>& agents, int time,
         ReservationTable& reservationTable
     ) override;
 
 private:
-    std::unique_ptr<Conflict> detectConflict(const std::map<int, AgentPath>& paths) const;
-    std::unique_ptr<Conflict> detectExternalConflict(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable) const;
-
     bool isSharedAllowed(int id1,  int id2, const Position& pos, int time) const;
-    std::map<int, AgentPath> getPartialSolution(const std::vector<AgentInput>& agents, const std::map<int, AgentPath>& paths) const;
-
-    float evaluateHeuristic(const std::shared_ptr<CBSPathfinder::Node>& node, ReservationTable& reservationTable) const;
-    int countConflicts(const std::map<int, AgentPath>& paths) const;
-    int countExternalConflicts(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable) const;
-
+    std::map<int, AgentPath> getPartialSolution(const std::vector<AgentInput>& agents, int time, const std::map<int, AgentPath>& paths) const;
     float getCost(const AgentPath& path) const;
     Func1<float, float> getCostModifier(const AgentInput& agent) const;
-    
-    //int findOtherAgent(const Constraint& conflict, const std::map<int, AgentPath>& paths) const;
-    //static std::pair<bool, Position> getPositionAtTime(const AgentPath& path, int t);
+
+    float evaluateHeuristic(const NodePtr& node, ReservationTable& reservationTable) const;
+    void updateConflicts(const NodePtr& node, int changedAgent, ReservationTable& reservationTable) const;
+    void heuristicFallback(const NodePtr& node, ReservationTable& reservationTable) const;
+
+    std::unique_ptr<Conflict> detectConflict(const std::map<int, AgentPath>& paths) const;
+    int countConflictAndCache(const NodePtr& node) const;
+    int countConflictPairAndCache(const NodePtr& node, const AgentPath& p1, const AgentPath& p2, int id1, int id2) const;
+    void forEachConflict(const AgentPath& p1, const AgentPath& p2, int id1, int id2, const Func4<bool, int, int, Position, int>& callback) const;
+
+    std::unique_ptr<Conflict> detectEConflict(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable) const;
+    int countEConflictAndCache(const NodePtr& node, ReservationTable& reservationTable) const;
+    int countEConflictAgentAndCache(const NodePtr& node, const AgentPath& path, int id, ReservationTable& reservationTable) const;
+    void forEachEConflict(const AgentPath& path, int id, ReservationTable& rt, const Func4<bool, int, int, Position, int>& callback) const;
 
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
