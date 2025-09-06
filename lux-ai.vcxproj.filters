@@ -72,6 +72,9 @@
     <ClCompile Include="modules\pathfinding\MultiAgentPathfinder.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="modules\pathfinding\utils\PathCache.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lux\annotate.hpp">
@@ -162,6 +165,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="modules\pathfinding\MultiAgentPathfinder.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\pathfinding\utils\PathKey.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\pathfinding\utils\PathCache.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

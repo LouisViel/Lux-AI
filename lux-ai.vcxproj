@@ -153,6 +153,7 @@
     <ClCompile Include="modules\utils\Stack.hpp" />
     <ClCompile Include="modules\pathfinding\ReservationTable.cpp" />
     <ClCompile Include="modules\pathfinding\MultiAgentPathfinder.cpp" />
+    <ClCompile Include="modules\pathfinding\utils\PathCache.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="modules\pathfinding\cbs\CBSPathfinder.hpp" />
@@ -184,6 +185,8 @@
     <ClInclude Include="modules\utils\WeakPtr.hpp" />
     <ClInclude Include="modules\pathfinding\ReservationTable.hpp" />
     <ClInclude Include="modules\pathfinding\MultiAgentPathfinder.hpp" />
+    <ClInclude Include="modules\pathfinding\utils\PathKey.hpp" />
+    <ClInclude Include="modules\pathfinding\utils\PathCache.hpp" />
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
