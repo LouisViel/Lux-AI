@@ -14,26 +14,22 @@ std::map<int, AgentPath> CBSPathfinder::computePaths(const std::vector<AgentInpu
 
     // Cast reservation table to shared/weak pointer
     // Trick to use empty lambda as shared_ptr destructor instead of default one
-    std::shared_ptr<ReservationTable> rtShared(&reservationTable, [](ReservationTable*) { });
-    std::weak_ptr<ReservationTable> rtWeak = rtShared;
+    const std::shared_ptr<ReservationTable> rtShared(&reservationTable, [](ReservationTable*) { });
+    const std::weak_ptr<ReservationTable> rtWeak = rtShared;
+    pathCache.reset();
 
     // Create Priority queue pour explorer nodes &  Root node
     std::priority_queue<NodePtr, std::vector<NodePtr>, NodeCmp> openedQueue;
-    NodePtr root = std::make_shared<CBSPathfinder::Node>();
+    const NodePtr root = std::make_shared<CBSPathfinder::Node>();
     NodePtr bestNodeSoFar = root;
 
     // Calcul initial des chemins pour tous les agents
-    Constraints emptyConstraints;
+    const Constraints emptyConstraints;
     for (const AgentInput& agent : agents) {
-        AgentPath path = std::move(algorithm->computePath(agent, time, emptyConstraints, rtWeak));
-
-        // Inject cost modifiers
-        path.addModifier(getCostModifier(agent));
+        PathPtr path = pathCache.compute(agent, emptyConstraints, time, rtWeak);
+        path->addModifier(getCostModifier(agent));
         root->cost += getCost(path);
-
-        // Register path, valid or not
-        if (path.isValid()) root->paths[agent.id] = std::move(path);
-        else root->paths[agent.id] = AgentPath(1, std::make_pair(agent.start, time));
+        root->paths[agent.id] = std::move(path);
     }
 
     // Register root node
@@ -45,43 +41,50 @@ std::map<int, AgentPath> CBSPathfinder::computePaths(const std::vector<AgentInpu
     int exploredNodes = 0;
     bool checkNodeCount = maxNodes >= 0;
     while (!openedQueue.empty()) {
-        NodePtr node = openedQueue.top();
+        const NodePtr node = openedQueue.top();
         openedQueue.pop();
 
         // Try detecting conflicts, otherwise finished !
         const std::unique_ptr<Conflict>& conflict = node->lastConflict;
-        if (!conflict) return node->paths;
+        if (!conflict) return node->exportPaths(&pathCache); // Export node paths to concrete paths
 
         // Safety to avoid infinite, too consuming processing
         if (checkNodeCount && ++exploredNodes > maxNodes) {
-            return std::move(getPartialSolution(agents, time, bestNodeSoFar->paths));
+            return getPartialSolution(agents, time, bestNodeSoFar);
         }
 
         // Générer deux contraintes (un par agent impliqué dans le conflit)
-        Constraint c1(conflict->agentA, conflict->pos, conflict->time);
-        Constraint c2(conflict->agentB, conflict->pos, conflict->time);
+        const Constraint c1(conflict->agentA, conflict->pos, conflict->time);
+        const Constraint c2(conflict->agentB, conflict->pos, conflict->time);
 
         // Loop over chaque nouvelle contrainte
         for (const Constraint& constraint : { c1, c2 }) {
             if (constraint.agentId == -1) continue;
 
             // Create conflict child node & add constraint
-            NodePtr child = std::make_shared<CBSPathfinder::Node>(*node);
+            const NodePtr child = std::make_shared<CBSPathfinder::Node>(*node);
             child->constraints.push_back(constraint);
 
             // Substract path cost from node if it exists
-            std::map<int, AgentPath>::const_iterator pathIt = child->paths.find(constraint.agentId);
+            const std::map<int, PathPtr>::const_iterator pathIt = child->paths.find(constraint.agentId);
             if (pathIt != child->paths.end()) child->cost -= getCost(pathIt->second);
 
-            // Find & Recalculer chemin pour l’agent concerné
-            const AgentInput& agent = *std::find_if(agents.begin(), agents.end(), [&constraint](const AgentInput& a) { return a.id == constraint.agentId; });
-            AgentPath newPath = std::move(algorithm->computePath(agent, time, child->constraints, rtWeak));
+            // Get target agent input (with extra safety check)
+            auto it = std::find_if(agents.begin(), agents.end(), [&constraint](const AgentInput& a) { return a.id == constraint.agentId; });
+            if (it == agents.end()) continue;
+            const AgentInput& agent = *it;
             
-            // Inject cost modifiers
-            newPath.addModifier(getCostModifier(agent));
+            // Find & Recalculer chemin pour l’agent concerné
+            // If cache not found, compute it blank & add it's cost modifiers
+            PathKey pathKey = pathCache.key(agent, child->constraints);
+            PathPtr newPath = pathCache.get(pathKey);
+            if (!newPath) {
+                newPath = pathCache.compute(pathKey, agent, child->constraints, time, rtWeak);
+                newPath->addModifier(getCostModifier(agent));
+            }
             
             // Ensure path is valid & register it
-            if (!newPath.isValid()) continue; // echec du replanning
+            if (!newPath->isValid()) continue; // echec du replanning
             child->cost += getCost(newPath);
             child->paths[constraint.agentId] = std::move(newPath);
             
@@ -97,7 +100,7 @@ std::map<int, AgentPath> CBSPathfinder::computePaths(const std::vector<AgentInpu
     }
 
     // Pas de solution trouvée, returning partial one from the best results
-	return std::move(getPartialSolution(agents, time, bestNodeSoFar->paths));
+	return getPartialSolution(agents, time, bestNodeSoFar);
 }
 
 
@@ -112,30 +115,29 @@ bool CBSPathfinder::isSharedAllowed(int id1, int id2, const Position& pos, int t
     return this->sharedAllowed(id1, id2, pos, time);
 }
 
-std::map<int, AgentPath> CBSPathfinder::getPartialSolution(const std::vector<AgentInput>& agents, int time, const std::map<int, AgentPath>& paths) const
+std::map<int, AgentPath> CBSPathfinder::getPartialSolution(const std::vector<AgentInput>& agents, int time, const NodePtr& node)
 {
-    std::map<int, AgentPath> partialSolution;
-    for (const std::pair<const int, AgentPath>& kv : paths) partialSolution[kv.first] = kv.second; // chemins valides
+    std::map<int, AgentPath> partialSolution = node->exportPaths(&pathCache);
     for (const AgentInput& agent : agents) {
         if (partialSolution.find(agent.id) == partialSolution.end())
-            partialSolution[agent.id] = AgentPath(1, std::make_pair(agent.start, time)); // path vide pour ceux bloqué
+            partialSolution[agent.id] = AgentPath::invalid(agent.start, time);
     } return partialSolution;
 }
 
-float CBSPathfinder::getCost(const AgentPath& path) const
+float CBSPathfinder::getCost(const PathPtr& path) const
 {
     // Return path processed cost if valid, otherwise MAX_TURNS x 2
-    if (path.isValid()) return path.getCost();
-    return path.evaluate(static_cast<float>(MAX_TURNS + MAX_TURNS));
+    if (path->isValid()) return path->getCost();
+    return path->evaluate(static_cast<float>(MAX_TURNS + MAX_TURNS));
 }
 
 Func1<float, float> CBSPathfinder::getCostModifier(const AgentInput& agent) const
 {
     // Return a lambda function to modify exponentially cost by priority
-    float costPriority = std::fmax(agent.priority, 0.0f);
-    return std::move([costPriority](float cost) {
+    const float costPriority = std::fmax(agent.priority, 0.0f);
+    return [costPriority](float cost) {
         return cost * std::powf(0.94f, costPriority);
-    });
+    };
 }
 
 
@@ -153,7 +155,7 @@ float CBSPathfinder::evaluateHeuristic(const NodePtr& node, ReservationTable& re
             node->conflicts.clear();
             node->conflictCount = countConflictAndCache(node) + countEConflictAndCache(node, reservationTable);
         } else heuristicFallback(node, reservationTable);
-    } float h = std::fmax(heuristicAlpha, 0.0f) * node->conflictCount;
+    } const float h = std::fmax(heuristicAlpha, 0.0f) * node->conflictCount;
     return node->cost + h; // Heuristique : coût + pondération des conflits
 }
 
@@ -167,13 +169,13 @@ void CBSPathfinder::updateConflicts(const NodePtr& node, int changedAgent, Reser
 
     // Initialize conflicts counter
     if (changedAgent == -1) return;
-    const AgentPath& agentPath = node->paths.at(changedAgent);
+    const PathPtr& agentPath = node->paths.at(changedAgent);
     node->conflictCount -= node->conflicts.getAndRemove(changedAgent);
     node->lastConflict = nullptr;
     int conflicts = 0;
 
     // Conflits internes (l'agent contre les autres) && externes (reservation table)
-    for (const std::pair<const int, AgentPath>& kv : node->paths) {
+    for (const std::pair<const int, PathPtr>& kv : node->paths) {
         if (kv.first == changedAgent) continue;
         conflicts += countConflictPairAndCache(node, agentPath, kv.second, changedAgent, kv.first);
     } conflicts += countEConflictAgentAndCache(node, agentPath, changedAgent, reservationTable);
@@ -208,7 +210,7 @@ void CBSPathfinder::heuristicFallback(const NodePtr& node, ReservationTable& res
 //////////////////////////////////////////////////////////////////
 
 
-std::unique_ptr<Conflict> CBSPathfinder::detectConflict(const std::map<int, AgentPath>& paths) const
+std::unique_ptr<Conflict> CBSPathfinder::detectConflict(const std::map<int, PathPtr>& paths) const
 {
     // Setup conflict pointer & callback function
     std::unique_ptr<Conflict> conflict = nullptr;
@@ -218,8 +220,8 @@ std::unique_ptr<Conflict> CBSPathfinder::detectConflict(const std::map<int, Agen
     };
 
     // Loop over all path pairs & try to find a conflict
-    for (std::map<int, AgentPath>::const_iterator it1 = paths.begin(); it1 != paths.end(); ++it1) {
-        for (std::map<int, AgentPath>::const_iterator it2 = std::next(it1); it2 != paths.end(); ++it2) {
+    for (std::map<int, PathPtr>::const_iterator it1 = paths.begin(); it1 != paths.end(); ++it1) {
+        for (std::map<int, PathPtr>::const_iterator it2 = std::next(it1); it2 != paths.end(); ++it2) {
             forEachConflict(it1->second, it2->second, it1->first, it2->first, callback);
             if (conflict) return conflict;
         }
@@ -229,7 +231,7 @@ std::unique_ptr<Conflict> CBSPathfinder::detectConflict(const std::map<int, Agen
 int CBSPathfinder::countConflictAndCache(const NodePtr& node) const
 {
     // Setup references
-    const std::map<int, AgentPath>& paths = node->paths;
+    const std::map<int, PathPtr>& paths = node->paths;
     std::unique_ptr<Conflict>& lastConflict = node->lastConflict;
     ConflictMap& conflicts = node->conflicts;
 
@@ -244,17 +246,16 @@ int CBSPathfinder::countConflictAndCache(const NodePtr& node) const
     };
     
     // Loop over all path pairs & count its conflicts
-    for (std::map<int, AgentPath>::const_iterator it1 = paths.begin(); it1 != paths.end(); ++it1) {
-        for (std::map<int, AgentPath>::const_iterator it2 = std::next(it1); it2 != paths.end(); ++it2) {
+    for (std::map<int, PathPtr>::const_iterator it1 = paths.begin(); it1 != paths.end(); ++it1) {
+        for (std::map<int, PathPtr>::const_iterator it2 = std::next(it1); it2 != paths.end(); ++it2) {
             forEachConflict(it1->second, it2->second, it1->first, it2->first, callback);
         }
     } return conflictCount;
 }
 
-int CBSPathfinder::countConflictPairAndCache(const NodePtr& node, const AgentPath& p1, const AgentPath& p2, int id1, int id2) const
+int CBSPathfinder::countConflictPairAndCache(const NodePtr& node, const PathPtr& p1, const PathPtr& p2, int id1, int id2) const
 {
     // Setup references
-    const std::map<int, AgentPath>& paths = node->paths;
     std::unique_ptr<Conflict>& lastConflict = node->lastConflict;
     ConflictMap& conflicts = node->conflicts;
 
@@ -269,14 +270,17 @@ int CBSPathfinder::countConflictPairAndCache(const NodePtr& node, const AgentPat
     return conflictCount;
 }
 
-void CBSPathfinder::forEachConflict(const AgentPath& p1, const AgentPath& p2, int id1, int id2, const Func4<bool, int, int, Position, int>& callback) const
+void CBSPathfinder::forEachConflict(const PathPtr& p1Ptr, const PathPtr& p2Ptr, int id1, int id2, const Func4<bool, int, int, Position, int>& callback) const
 {
+    const AgentPath& p1 = *p1Ptr;
+    const AgentPath& p2 = *p2Ptr;
+
     // Compare positions at each action/time, invoke callback when find a conflict
-    int p1Size = (int)p1.size(), p2Size = (int)p2.size();
-    int T = std::max(p1Size, p2Size);
+    const int p1Size = (int)p1.size(), p2Size = (int)p2.size();
+    const int T = std::max(p1Size, p2Size);
     for (int t = 0; t < T; ++t) {
-        Position pos1 = (t < p1Size) ? p1[t].first : p1.back().first;
-        Position pos2 = (t < p2Size) ? p2[t].first : p2.back().first;
+        const Position& pos1 = (t < p1Size) ? p1[t].first : p1.back().first;
+        const Position& pos2 = (t < p2Size) ? p2[t].first : p2.back().first;
 
         // Cas 1 : même position au même temps (collision directe)
         if (pos1 == pos2 && !isSharedAllowed(id1, id2, pos1, t)) {
@@ -285,10 +289,10 @@ void CBSPathfinder::forEachConflict(const AgentPath& p1, const AgentPath& p2, in
         }
 
         // Cas 2 et 3 : mouvements entre t -> t+1
-        int t1 = t + 1;
+        const int t1 = t + 1;
         if (t1 < T) {
-            Position next1 = (t1 < p1Size) ? p1[t1].first : p1.back().first;
-            Position next2 = (t1 < p2Size) ? p2[t1].first : p2.back().first;
+            const Position& next1 = (t1 < p1Size) ? p1[t1].first : p1.back().first;
+            const Position& next2 = (t1 < p2Size) ? p2[t1].first : p2.back().first;
 
             // Cas 3 : swap autorisé, pas de conflit
             if (pos1 == next2 && pos2 == next1) continue;
@@ -315,7 +319,7 @@ void CBSPathfinder::forEachConflict(const AgentPath& p1, const AgentPath& p2, in
 
 
 // WARNING : Ne supporte pas les swaps de position !! (du a l'implementation de ReservationTable anonyme)
-std::unique_ptr<Conflict> CBSPathfinder::detectEConflict(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable) const
+std::unique_ptr<Conflict> CBSPathfinder::detectEConflict(const std::map<int, PathPtr>& paths, ReservationTable& reservationTable) const
 {
     // Setup conflict pointer & callback function
     std::unique_ptr<Conflict> conflict = nullptr;
@@ -325,7 +329,7 @@ std::unique_ptr<Conflict> CBSPathfinder::detectEConflict(const std::map<int, Age
     };
     
     // On parcourt tous les agents & try to find a conflict
-    for (const std::pair<const int, AgentPath>& kv : paths) {
+    for (const std::pair<const int, PathPtr>& kv : paths) {
         forEachEConflict(kv.second, kv.first, reservationTable, callback);
         if (conflict) return conflict;
     } return nullptr;
@@ -335,7 +339,7 @@ std::unique_ptr<Conflict> CBSPathfinder::detectEConflict(const std::map<int, Age
 int CBSPathfinder::countEConflictAndCache(const NodePtr& node, ReservationTable& reservationTable) const
 {
     // Setup references
-    const std::map<int, AgentPath>& paths = node->paths;
+    const std::map<int, PathPtr>& paths = node->paths;
     std::unique_ptr<Conflict>& lastConflict = node->lastConflict;
     ConflictMap& conflicts = node->conflicts;
 
@@ -349,15 +353,14 @@ int CBSPathfinder::countEConflictAndCache(const NodePtr& node, ReservationTable&
     };
 
     // Loop over all path pairs & count its conflicts
-    for (const std::pair<const int, AgentPath>& kv : paths) {
+    for (const std::pair<const int, PathPtr>& kv : paths) {
         forEachEConflict(kv.second, kv.first, reservationTable, callback);
     } return conflictCount;
 }
 
-int CBSPathfinder::countEConflictAgentAndCache(const NodePtr& node, const AgentPath& path, int id, ReservationTable& reservationTable) const
+int CBSPathfinder::countEConflictAgentAndCache(const NodePtr& node, const PathPtr& path, int id, ReservationTable& reservationTable) const
 {
     // Setup references
-    const std::map<int, AgentPath>& paths = node->paths;
     std::unique_ptr<Conflict>& lastConflict = node->lastConflict;
     ConflictMap& conflicts = node->conflicts;
 
@@ -372,12 +375,12 @@ int CBSPathfinder::countEConflictAgentAndCache(const NodePtr& node, const AgentP
     return conflictCount;
 }
 
-void CBSPathfinder::forEachEConflict(const AgentPath& path, int id, ReservationTable& rt, const Func4<bool, int, int, Position, int>& callback) const
+void CBSPathfinder::forEachEConflict(const PathPtr& path, int id, ReservationTable& rt, const Func4<bool, int, int, Position, int>& callback) const
 {
     // Compare positions at each action/time, invoke callback when find a conflict
-    for (const std::pair<Position, int>& step : path) {
+    for (const std::pair<Position, int>& step : *path) {
         const Position& pos = step.first;
-        int t = step.second;
+        const int t = step.second;
 
         // Check conflit avec une réservation externe (au tour ciblé)
         if (!rt.isFree(pos, t) && !isSharedAllowed(id, -1, pos, t)) {
@@ -385,7 +388,7 @@ void CBSPathfinder::forEachEConflict(const AgentPath& path, int id, ReservationT
             continue;
         }
 
-        int t0 = t - 1; // Check conflit avec une réservation externe (a l'état initial du tour)
+        const int t0 = t - 1; // Check conflit avec une réservation externe (a l'état initial du tour)
         if (t0 >= 0 && !rt.isFree(pos, t0) && !isSharedAllowed(id, -1, pos, t0)) {
             if (callback(id, -1, pos, t)) return;
             continue;

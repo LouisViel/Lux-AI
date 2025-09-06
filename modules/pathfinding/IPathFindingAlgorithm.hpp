@@ -12,58 +12,6 @@ class ReservationTable;
 //////////////////////////////////////////////////////////////////
 
 
-class IPathfindingAlgorithm
-{
-public:
-    virtual ~IPathfindingAlgorithm() = default;
-    virtual AgentPath computePath(
-        const AgentInput& agent, int time, const Constraints& constraints,
-        std::weak_ptr<ReservationTable> reservationTable = std::weak_ptr<ReservationTable>()
-    ) = 0;
-
-    virtual void resetCache() { }
-    virtual void injectCache(AgentPath&& cache) { }
-    virtual void injectCache(const AgentPath& cache)
-    {
-        AgentPath copy = cache; // copy
-        injectCache(std::move(copy));
-    }
-};
-
-class IPathfindingMultiAlgorithm
-{
-public:
-    virtual ~IPathfindingMultiAlgorithm() = default;
-    virtual std::map<int, AgentPath> computePaths(
-        const std::vector<AgentInput>& agents, int time,
-        ReservationTable& reservationTable
-    ) = 0;
-};
-
-
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
-
-
-struct AgentInput
-{
-public:
-    int id;
-    Position start;
-    Position goal;
-    int priority; // optionnel
-
-    AgentInput() = default;
-    ~AgentInput() = default;
-    AgentInput(int id, const Position& start, const Position& goal, int priority = 0)
-        : id(id), start(start), goal(goal), priority(priority) {
-    }
-};
-
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
-
 class AgentPath : public std::vector<std::pair<Position, int>>
 {
 private:
@@ -72,6 +20,11 @@ private:
 
 public:
     using std::vector<std::pair<Position, int>>::vector;
+
+    static AgentPath invalid(const Position& pos, int time)
+    {
+        return AgentPath(1, std::make_pair(pos, time));
+    }
 
     void setCost(float cost)
     {
@@ -103,4 +56,59 @@ public:
     {
         modifiers.push_back(modifier);
     }
+};
+
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+struct AgentInput
+{
+public:
+    int id;
+    Position start;
+    Position goal;
+    int priority; // optionnel
+
+    AgentInput() = default;
+    ~AgentInput() = default;
+    AgentInput(int id, const Position& start, const Position& goal, int priority = 0)
+        : id(id), start(start), goal(goal), priority(priority) {
+    }
+};
+
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+class IPathfindingAlgorithm
+{
+public:
+    virtual ~IPathfindingAlgorithm() = default;
+    virtual AgentPath computePath(
+        const AgentInput& agent, int time, const Constraints& constraints,
+        std::weak_ptr<ReservationTable> reservationTable = std::weak_ptr<ReservationTable>()
+    ) = 0;
+
+    virtual void resetCache() { }
+    virtual void injectCache(AgentPath&& cache) { }
+    virtual void injectCache(const AgentPath& cache)
+    {
+        AgentPath copy = cache; // copy
+        injectCache(std::move(copy));
+    }
+};
+
+class IPathfindingMultiAlgorithm
+{
+public:
+    virtual ~IPathfindingMultiAlgorithm() = default;
+    virtual std::map<int, AgentPath> computePaths(
+        const std::vector<AgentInput>& agents, int time,
+        ReservationTable& reservationTable
+    ) = 0;
 };
