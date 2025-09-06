@@ -75,11 +75,11 @@ std::shared_ptr<ActionPlan> GoapPlanner::plan(const std::shared_ptr<GoapAgent>& 
 			}
 
 			// Create Action Plan (trick with sharedPtr cause c++11 not happy otherwise)
-			return std::move(std::make_shared<ActionPlan>(
+			return std::make_shared<ActionPlan>(
 				std::weak_ptr<AgentGoal>(goal),
 				std::move(actionStack),
 				goalNode->getCost()
-			));
+			);
 		}
 	}
 

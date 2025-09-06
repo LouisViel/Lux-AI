@@ -45,7 +45,7 @@ private:
             for (std::map<int, PathPtr>::const_iterator it = this->paths.begin(); it != this->paths.end(); ++it)
                 paths.emplace(it->first, std::move(*it->second));
             if (cache) cache->reset();
-            return std::move(paths);
+            return paths;
         }
 
     public:

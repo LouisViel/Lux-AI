@@ -57,7 +57,7 @@ PathPtr PathCache::compute(const PathKey& key, const AgentInput& agent, const Co
 
     // Cache AgentPath as WeakPtr & Return it
     cache[key] = PathWeak(ptr);
-    return std::move(ptr);
+    return ptr;
 }
 
 PathPtr PathCache::getOrCompute(const AgentInput& agent, const Constraints& constraints, int time, const std::weak_ptr<ReservationTable>& rtWeak, Func1<float, float> modifier)

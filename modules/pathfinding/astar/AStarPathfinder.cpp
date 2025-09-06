@@ -95,7 +95,7 @@ AgentPath AStarPathfinder::computePath(
 	}
 
 	// Move path to return argument
-	return std::move(path);
+	return path;
 }
 
 bool AStarPathfinder::isValid(int agentId, const Position& pos, int time) const
