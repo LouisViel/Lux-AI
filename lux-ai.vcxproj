@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="modules\pathfinding\PathFindingAlgorithm.cpp" />
     <ClCompile Include="project\handlers\CityHandler.cpp" />
     <ClCompile Include="project\handlers\GlobalHandler.cpp" />
     <ClCompile Include="modules\pathfinding\cbs\CBSPathfinder.cpp" />
@@ -172,7 +173,7 @@
     <ClInclude Include="modules\goap\BeliefFactory.hpp" />
     <ClInclude Include="modules\goap\IActionStrategy.hpp" />
     <ClInclude Include="modules\goap\Module.hpp" />
-    <ClInclude Include="modules\pathfinding\IPathFindingAlgorithm.hpp" />
+    <ClInclude Include="modules\pathfinding\PathFindingAlgorithm.hpp" />
     <ClInclude Include="modules\utils\Event.hpp" />
     <ClInclude Include="modules\utils\make_unique.hpp" />
     <ClInclude Include="modules\goap\AgentBelief.hpp" />

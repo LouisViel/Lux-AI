@@ -69,16 +69,19 @@
     <ClCompile Include="modules\pathfinding\utils\PathCache.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\GlobalHandler.cpp">
+    <ClCompile Include="project\handlers\CityHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\CityHandler.cpp">
+    <ClCompile Include="project\handlers\GlobalHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\UnitHandler.cpp">
+    <ClCompile Include="project\handlers\GoapHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="GoapHandler.cpp">
+    <ClCompile Include="project\handlers\UnitHandler.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\pathfinding\PathFindingAlgorithm.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,7 +164,7 @@
     <ClInclude Include="modules\pathfinding\astar\AStarPathfinder.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="modules\pathfinding\IPathFindingAlgorithm.hpp">
+    <ClInclude Include="modules\pathfinding\PathFindingAlgorithm.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="modules\pathfinding\ReservationTable.hpp">
@@ -176,16 +179,16 @@
     <ClInclude Include="modules\pathfinding\utils\PathCache.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\GlobalHandler.hpp">
+    <ClInclude Include="project\handlers\CityHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\CityHandler.hpp">
+    <ClInclude Include="project\handlers\GlobalHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\UnitHandler.hpp">
+    <ClInclude Include="project\handlers\GoapHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="GoapHandler.hpp">
+    <ClInclude Include="project\handlers\UnitHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
