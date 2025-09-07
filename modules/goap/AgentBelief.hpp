@@ -68,7 +68,7 @@ public:
 
 	public:
 		template<typename Str, typename = typename std::enable_if<std::is_convertible<Str, std::string>::value>::type>
-		Builder(Str&& name) : belief(make_unique<AgentBelief>(std::forward<Str>(name)))
+		Builder(Str&& name) : belief(utils::make_unique<AgentBelief>(std::forward<Str>(name)))
 		{
 			// Empty Constructor
 		}

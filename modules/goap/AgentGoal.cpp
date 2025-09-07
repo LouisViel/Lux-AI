@@ -10,7 +10,8 @@ const std::string& AgentGoal::getName() const
 
 float AgentGoal::getPriority() const
 {
-	return priority;
+	if (!this->priority) return 0.0f;
+	return this->priority();
 }
 
 const WeakPtrUnorderedSet<AgentBelief>& AgentGoal::getDesiredEffects() const
@@ -29,7 +30,7 @@ AgentGoal::Builder::~Builder() { }
 AgentGoal::Builder& AgentGoal::Builder::withPriority(float priority)
 {
 	if (built) throw std::runtime_error("Builder already built");
-	goal->priority = priority;
+	goal->priority = [priority]() { return priority; };
 	return *this;
 }
 

@@ -21,7 +21,8 @@ const std::string& AgentAction::getName() const
 
 float AgentAction::getCost() const
 {
-	return cost;
+	if (!this->cost) return 1.0f;
+	return this->cost();
 }
 
 bool AgentAction::isComplete() const
@@ -90,25 +91,25 @@ AgentAction::Builder::~Builder() { }
 AgentAction::Builder& AgentAction::Builder::withCost(float cost)
 {
 	if (built) throw std::runtime_error("Builder already built");
-	action->cost = cost;
+	action->cost = [cost]() { return cost; };
 	return *this;
 }
 
-AgentAction::Builder& AgentAction::Builder::withStrategy(std::unique_ptr<IActionStrategy> strategy)
+AgentAction::Builder& AgentAction::Builder::withStrategy(std::unique_ptr<IActionStrategy>&& strategy)
 {
 	if (built) throw std::runtime_error("Builder already built");
 	action->strategy = std::move(strategy);
 	return *this;
 }
 
-AgentAction::Builder& AgentAction::Builder::withPrecondition(std::weak_ptr<AgentBelief> precondition)
+AgentAction::Builder& AgentAction::Builder::addPrecondition(std::weak_ptr<AgentBelief> precondition)
 {
 	if (built) throw std::runtime_error("Builder already built");
 	action->preconditions.insert(precondition);
 	return *this;
 }
 
-AgentAction::Builder& AgentAction::Builder::withEffect(std::weak_ptr<AgentBelief> effect)
+AgentAction::Builder& AgentAction::Builder::addEffect(std::weak_ptr<AgentBelief> effect)
 {
 	if (built) throw std::runtime_error("Builder already built");
 	action->effects.insert(effect);

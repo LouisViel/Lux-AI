@@ -19,6 +19,7 @@ public:
 	ActionPlan() = delete;
 	ActionPlan(const std::weak_ptr<AgentGoal> goal, const Stack<std::weak_ptr<AgentAction>>& actions, float totalCost);
 	ActionPlan(const std::weak_ptr<AgentGoal> goal, Stack<std::weak_ptr<AgentAction>>&& actions, float totalCost);
+	~ActionPlan() = default;
 
 	const std::weak_ptr<AgentGoal> getGoal() const;
 	Stack<std::weak_ptr<AgentAction>>& getActions();

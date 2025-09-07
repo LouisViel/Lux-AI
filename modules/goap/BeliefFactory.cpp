@@ -4,6 +4,9 @@
 #include "AgentBelief.hpp"
 
 
+BeliefFactory::BeliefFactory(const std::shared_ptr<GoapAgent> agent, const std::shared_ptr<BeliefMap> beliefs)
+	: BeliefFactory(std::weak_ptr<GoapAgent>(agent), BeliefMapPtr(beliefs)) { }
+
 BeliefFactory::BeliefFactory(const std::weak_ptr<GoapAgent> agent, const BeliefMapPtr beliefs)
 	: agent(agent), beliefs(beliefs) { }
 

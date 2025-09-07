@@ -8,8 +8,8 @@ class AgentGoal
 {
 private:
 	const std::string name;
-	float priority;
 	WeakPtrUnorderedSet<AgentBelief> desiredEffects;
+	Func<float> priority;
 
 public:
 	AgentGoal() = delete;
@@ -50,6 +50,7 @@ public:
 		~Builder();
 
 		AgentGoal::Builder& withPriority(float priority);
+		// Template - AgentGoal::Builder& withPriority(Func<float> priority);
 		AgentGoal::Builder& withDesiredEffect(std::weak_ptr<AgentBelief> effect);
 
 		std::unique_ptr<AgentGoal> build();
@@ -62,7 +63,30 @@ public:
 		template<typename Str, typename = typename std::enable_if<std::is_convertible<Str, std::string>::value>::type>
 		Builder(Str&& name) : goal(make_unique<AgentGoal>(std::forward<Str>(name)))
 		{
-			// Empty Constructor
+			goal->priority = []() { return 0.0f; };
+		}
+
+		//////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////
+
+		template<typename FuncFloat, typename = typename std::enable_if<std::is_convertible<FuncFloat, Func<float>>::value>::type>
+		AgentGoal::Builder& withPriority(FuncFloat&& priority)
+		{
+			if (built) throw std::runtime_error("Builder already built");
+			goal->priority = std::forward<FuncFloat>(priority);
+			return *this;
+		}
+
+		// Surcharge auto-complétion lvalue
+		inline AgentGoal::Builder& withPriority(const Func<float>& priority)
+		{
+			return withPriority(priority);
+		}
+
+		// Surcharge auto-complétion rvalue
+		inline AgentGoal::Builder& withPriority(Func<float>&& priority)
+		{
+			return withPriority(priority);
 		}
 	};
 };

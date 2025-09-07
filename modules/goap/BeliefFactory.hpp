@@ -13,6 +13,7 @@ private:
 
 public:
 	BeliefFactory() = delete;
+	BeliefFactory(const std::shared_ptr<GoapAgent> agent, const std::shared_ptr<BeliefMap> beliefs);
 	BeliefFactory(const std::weak_ptr<GoapAgent> agent, const BeliefMapPtr beliefs);
 	~BeliefFactory();
 

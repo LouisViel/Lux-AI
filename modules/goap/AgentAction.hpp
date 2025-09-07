@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include "Module.hpp"
+#include "IActionStrategy.hpp"
 
 class AgentBelief;
-class IActionStrategy;
 
 class AgentAction
 {
@@ -11,7 +11,7 @@ private:
 
 private:
 	const std::string name;
-	float cost = 0.0f;
+	Func<float> cost;
 
 	WeakPtrUnorderedSet<AgentBelief> preconditions;
 	WeakPtrUnorderedSet<AgentBelief> effects;
@@ -65,9 +65,10 @@ public:
 		~Builder();
 
 		AgentAction::Builder& withCost(float cost);
-		AgentAction::Builder& withStrategy(std::unique_ptr<IActionStrategy> strategy);
-		AgentAction::Builder& withPrecondition(std::weak_ptr<AgentBelief> precondition);
-		AgentAction::Builder& withEffect(std::weak_ptr<AgentBelief> effect);
+		// Template - AgentAction::Builder& withCost(Func<float> cost);
+		AgentAction::Builder& withStrategy(std::unique_ptr<IActionStrategy>&& strategy);
+		AgentAction::Builder& addPrecondition(std::weak_ptr<AgentBelief> precondition);
+		AgentAction::Builder& addEffect(std::weak_ptr<AgentBelief> effect);
 
 		std::unique_ptr<AgentAction> build();
 		std::shared_ptr<AgentAction> buildShared();
@@ -79,7 +80,30 @@ public:
 		template<typename Str, typename = typename std::enable_if<std::is_convertible<Str, std::string>::value>::type>
 		Builder(Str&& name) : action(make_unique<AgentAction>(std::forward<Str>(name)))
 		{
-			action->cost = 1;
+			action->cost = []() { return 1.0f; };
+		}
+
+		//////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////
+
+		template<typename FuncFloat, typename = typename std::enable_if<std::is_convertible<FuncFloat, Func<float>>::value>::type>
+		AgentAction::Builder& withCost(FuncFloat&& cost)
+		{
+			if (built) throw std::runtime_error("Builder already built");
+			action->cost = std::forward<FuncFloat>(cost);
+			return *this;
+		}
+
+		// Surcharge auto-complétion lvalue
+		inline AgentAction::Builder& withCost(const Func<float>& cost)
+		{
+			return withCost(cost);
+		}
+
+		// Surcharge auto-complétion rvalue
+		inline AgentAction::Builder& withCost(Func<float>&& cost)
+		{
+			return withCost(cost);
 		}
 	};
 };

@@ -25,8 +25,8 @@ public:
 	std::weak_ptr<AgentGoal> currentGoal;
 	std::weak_ptr<AgentAction> currentAction;
 
-	std::shared_ptr<ActionPlan> actionPlan;
-	std::shared_ptr<IGoapPlanner> gPlanner;
+	std::shared_ptr<ActionPlan> actionPlan = nullptr;
+	std::shared_ptr<IGoapPlanner> gPlanner = nullptr;
 
 public:
 	GoapAgent();
@@ -37,7 +37,6 @@ public:
 
 	Position getPosition() const;
 	float getPathCost() const;
-
 	float calculatePath(Position target);
 
 
@@ -80,7 +79,7 @@ public:
 	}
 
 	// Surcharge auto-complétion rvalue
-	inline void setPsetPathosition(Func1<float, Position>&& path)
+	inline void setPath(Func1<float, Position>&& path)
 	{
 		setPath(std::move(path));
 	}
