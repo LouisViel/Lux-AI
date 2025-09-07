@@ -33,8 +33,8 @@ AgentPath AStarPathfinder::computePath(
 	std::priority_queue<QueueItem, std::vector<QueueItem>, Cmp> openedQueue;
 	std::unordered_map<PosTime, float, PosTimeHash> bestCostAt;
 
-	// Reservation table is useless with A*, use it with other algorithms like CBS (multi-agent)
-	// std::shared_ptr<ReservationTable> rtPtr = reservationTable.lock();
+	// Reservation table is useless with A* only, use it with other algorithms like CBS (multi-agent)
+	std::shared_ptr<ReservationTable> rtPtr = reservationTable.lock();
 
 	// Create start node & register it
 	float heur = heuristic(agent.start, agent.goal);
@@ -48,10 +48,11 @@ AgentPath AStarPathfinder::computePath(
 	while (!openedQueue.empty()) {
 		NodePtr current = openedQueue.top().second;
 		openedQueue.pop();
+		int t = current->time;
 
 		// Si on est déjà venu ici à ce timing pour un coût <=, inutile de poursuivre
 		float cost = current->getCost();
-		PosTime key = PosTime(current->position, current->time);
+		PosTime key = PosTime(current->position, t);
 		auto it = bestCostAt.find(key);
 		if (it != bestCostAt.end() && it->second <= cost) continue;
 		bestCostAt[key] = cost;
@@ -66,9 +67,10 @@ AgentPath AStarPathfinder::computePath(
 		// Loop over move possibilities
 		for (const Position& dir : dirs) {
 			const Position npos = Position(position.x + dir.x, position.y + dir.y);
-			int nextTime = current->time + 1;
+			int nextTime = t + 1;
 
 			// Check conditions & verifications
+			if (rtPtr && !(rtPtr->isFree(npos, nextTime) && rtPtr->isFree(npos, t))) continue;
 			if (constraints.has(agent.id, npos, nextTime)) continue;
 			if (!isValid(agent.id, npos, nextTime)) continue;
 

@@ -321,6 +321,9 @@ void CBSPathfinder::forEachConflict(const PathPtr& p1Ptr, const PathPtr& p2Ptr, 
 // WARNING : Ne supporte pas les swaps de position !! (du a l'implementation de ReservationTable anonyme)
 std::unique_ptr<Conflict> CBSPathfinder::detectEConflict(const std::map<int, PathPtr>& paths, ReservationTable& reservationTable) const
 {
+    // If do not want to use reservation table
+    if (preventRsTable) return nullptr;
+
     // Setup conflict pointer & callback function
     std::unique_ptr<Conflict> conflict = nullptr;
     const Func4<bool, int, int, Position, int> callback = [&conflict](const int& id1, const int& id2, const Position& pos, const int& t) {
@@ -338,6 +341,9 @@ std::unique_ptr<Conflict> CBSPathfinder::detectEConflict(const std::map<int, Pat
 // WARNING : Ne supporte pas les swaps de position !! (du a l'implementation de ReservationTable anonyme)
 int CBSPathfinder::countEConflictAndCache(const NodePtr& node, ReservationTable& reservationTable) const
 {
+    // If do not want to use reservation table
+    if (preventRsTable) return 0;
+
     // Setup references
     const std::map<int, PathPtr>& paths = node->paths;
     std::unique_ptr<Conflict>& lastConflict = node->lastConflict;
@@ -360,6 +366,9 @@ int CBSPathfinder::countEConflictAndCache(const NodePtr& node, ReservationTable&
 
 int CBSPathfinder::countEConflictAgentAndCache(const NodePtr& node, const PathPtr& path, int id, ReservationTable& reservationTable) const
 {
+    // If do not want to use reservation table
+    if (preventRsTable) return 0;
+
     // Setup references
     std::unique_ptr<Conflict>& lastConflict = node->lastConflict;
     ConflictMap& conflicts = node->conflicts;

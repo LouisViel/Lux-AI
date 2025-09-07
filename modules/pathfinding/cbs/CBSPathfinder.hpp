@@ -76,6 +76,7 @@ private:
 public:
     int maxNodes = MAX_NODES;
     float heuristicAlpha = 0.0f;
+    bool preventRsTable = false;
 
 public:
 	// Template - CBSPathfinder(std::shared_ptr<IPathfindingAlgorithm> algorithm);
