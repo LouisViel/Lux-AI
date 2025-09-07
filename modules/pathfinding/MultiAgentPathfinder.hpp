@@ -1,6 +1,6 @@
 #pragma once
 #include "Module.hpp"
-#include "IPathFindingAlgorithm.hpp"
+#include "PathFindingAlgorithm.hpp"
 
 class ReservationTable;
 
@@ -33,6 +33,7 @@ public:
     MultiAgentPathfinder(int width, int height, std::shared_ptr<IPathfindingMultiAlgorithm> algorithm);
     ~MultiAgentPathfinder();
 
+    void addStay(int agentId, const Position& start);
     void addAgent(int agentId, const Position& start, const Position& goal, int priority = 0);
     void removeAgent(int agentId);
     void clear();

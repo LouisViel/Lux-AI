@@ -38,6 +38,11 @@ void ReservationTable::reset()
 	}
 }
 
+bool ReservationTable::isValid(const Position& pos, int t) const
+{
+	return ensure(pos, t);
+}
+
 inline bool ReservationTable::ensure(const Position& pos, int t) const
 {
 	return (pos.x >= 0 && pos.x < width) &&

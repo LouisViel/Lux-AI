@@ -1,5 +1,5 @@
 #pragma once
-#include "../IPathFindingAlgorithm.hpp"
+#include "../PathFindingAlgorithm.hpp"
 #include "../utils/PathCache.hpp"
 #include "../utils/Constraint.hpp"
 #include "../utils/Conflict.hpp"

@@ -111,4 +111,12 @@ public:
         const std::vector<AgentInput>& agents, int time,
         ReservationTable& reservationTable
     ) = 0;
+
+    void applyReservations(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable);
+    virtual void applyReservation(const AgentPath& path, ReservationTable& reservationTable);
+
+    void removeReservations(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable);
+    virtual void removeReservation(const AgentPath& path, ReservationTable& reservationTable);
+    
+    virtual void clearReservations() { }
 };

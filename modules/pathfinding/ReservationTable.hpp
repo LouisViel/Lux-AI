@@ -14,6 +14,7 @@ public:
 	ReservationTable(int width, int height);
 	~ReservationTable();
 
+	bool isValid(const Position& pos, int t = -1) const;
 	bool isFree(const Position& pos, int t = -1) const;
 	void reserve(const Position& pos, int t = -1);
 	void free(const Position& pos, int t = -1);
