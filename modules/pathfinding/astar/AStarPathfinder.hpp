@@ -1,6 +1,6 @@
 #pragma once
 #include "../Module.hpp"
-#include "../IPathfindingAlgorithm.hpp"
+#include "../PathfindingAlgorithm.hpp"
 #include "../utils/Constraint.hpp"
 
 class AStarPathfinder : public IPathfindingAlgorithm
@@ -14,12 +14,12 @@ private:
     public:
         float heuristic;
         float globalCost;
-        std::weak_ptr<AStarPathfinder::Node> parent;
+        std::shared_ptr<AStarPathfinder::Node> parent;
         Position position;
         int time;
         
     public:
-        Node(float heuristic, float cost, std::weak_ptr<AStarPathfinder::Node> parent, const Position& position, int time) :
+        Node(float heuristic, float cost, std::shared_ptr<AStarPathfinder::Node> parent, const Position& position, int time) :
             heuristic(heuristic), globalCost(cost), parent(parent), position(position), time(time)
         { }
 

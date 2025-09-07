@@ -8,7 +8,7 @@ AgentPath AStarPathfinder::computePath(
 ) {
 	// Ensure goal is not start, otherwise early exit
 	if (agent.start == agent.goal) {
-		return AgentPath(1, std::make_pair(agent.start, time));
+		return AgentPath::invalid(agent.start, time);
 	}
 
 	// Declare constant helper
@@ -78,7 +78,7 @@ AgentPath AStarPathfinder::computePath(
 			float h = this->heuristic(npos, agent.goal);
 
 			// Create new valid neighbor node
-			NodePtr neighborNode = std::make_shared<Node>(h, g, std::weak_ptr<AStarPathfinder::Node>(current), npos, nextTime);
+			NodePtr neighborNode = std::make_shared<Node>(h, g, current, npos, nextTime);
 			openedQueue.emplace(neighborNode->getCost(), neighborNode);
 		}
 	}
@@ -90,7 +90,7 @@ AgentPath AStarPathfinder::computePath(
 		NodePtr n = goalNode;
 		while (n) {
 			path.emplace_back(n->position, n->time);
-			n = n->parent.lock();
+			n = n->parent;
 		} std::reverse(path.begin(), path.end());
 	}
 
