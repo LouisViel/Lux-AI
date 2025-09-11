@@ -326,7 +326,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Global" id="-Y7-2deDL1iDrgK2qj4l">
-    <mxGraphModel dx="1562" dy="909" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1895" dy="1138" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -375,14 +375,11 @@
         <mxCell id="Su8B9QRQmsU1zOK0YH74-12" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry x="295" y="170" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Su8B9QRQmsU1zOK0YH74-16" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="604" y="170" width="120" height="60" as="geometry" />
+        <mxCell id="Su8B9QRQmsU1zOK0YH74-16" value="has unlocked Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="604" y="300" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Su8B9QRQmsU1zOK0YH74-17" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="930" y="170" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="Su8B9QRQmsU1zOK0YH74-18" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1245" y="170" width="120" height="60" as="geometry" />
+        <mxCell id="Su8B9QRQmsU1zOK0YH74-17" value="Prioritize Research for citites" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="920" y="220" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Su8B9QRQmsU1zOK0YH74-19" value="" style="orthogonalLoop=1;jettySize=auto;html=1;rounded=0;shape=link;labelBackgroundColor=none;fontColor=default;" parent="1" edge="1">
           <mxGeometry width="100" relative="1" as="geometry">
@@ -396,27 +393,54 @@
         <mxCell id="Su8B9QRQmsU1zOK0YH74-23" value="Youtube Unity Implementation :&lt;br&gt;https://www.youtube.com/&lt;br&gt;watch?v=T_sBYgP7_2k&amp;amp;t=312s" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;rounded=0;glass=0;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry y="153" width="200" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-1" value="Unlock Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1245" y="250" width="120" height="60" as="geometry" />
+        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-1" value="Unlock Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1245" y="190" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-2" value="Unlock Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1245" y="330" width="120" height="60" as="geometry" />
+        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-2" value="Unlock Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1245" y="270" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-3" value="Expand Units count" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1245" y="490" width="120" height="60" as="geometry" />
+        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-3" value="Expand Units count" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1245" y="640" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-4" value="Merge city tiles" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1245" y="410" width="120" height="60" as="geometry" />
+        <mxCell id="Zmyq8BkA4rNsqceqXZ6w-4" value="Merge city tiles" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1245" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q57QvBGFtP9QdnmqiUX3-1" value="Expand&amp;nbsp;city tiles" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1245" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-1" value="has not unlocked Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="604" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-2" value="has not unlocked Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="604" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-3" value="has many unconnected city tiles" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="604" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-4" value="Prioritise Optimizing city placement" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="920" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-5" value="Expanding city tiles count" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="604" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-6" value="Expanding Units count" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="604" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-7" value="Prioritize Building city tiles" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="920" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ciancLRq6z2AqTrup4cW-8" value="Prioritize creating Units" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="920" y="620" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="City" id="2SpIdoxScdeB8EzO2OjX">
-    <mxGraphModel dx="1838" dy="1069" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1042" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="Tl5CC2s2IY_5zqogpV7w-0" />
         <mxCell id="Tl5CC2s2IY_5zqogpV7w-1" parent="Tl5CC2s2IY_5zqogpV7w-0" />
-        <mxCell id="7eH8xSY3Qbm1ylYSaBGg-0" value="&lt;div&gt;SELF ACTIONS&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0022;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+        <mxCell id="7eH8xSY3Qbm1ylYSaBGg-0" value="&lt;div&gt;SELF ACTIONS&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0022;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="900" y="150" width="180" height="280" as="geometry" />
         </mxCell>
         <mxCell id="Tl5CC2s2IY_5zqogpV7w-2" value="SENSORS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=30;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
@@ -464,10 +488,10 @@
         <mxCell id="Tl5CC2s2IY_5zqogpV7w-11" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="295" y="170" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Tl5CC2s2IY_5zqogpV7w-12" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
+        <mxCell id="Tl5CC2s2IY_5zqogpV7w-12" value="Created Worker" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="604" y="170" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Tl5CC2s2IY_5zqogpV7w-14" value="" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
+        <mxCell id="Tl5CC2s2IY_5zqogpV7w-14" value="Créer plus de Workers" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="1245" y="170" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Tl5CC2s2IY_5zqogpV7w-15" value="" style="orthogonalLoop=1;jettySize=auto;html=1;rounded=0;shape=link;labelBackgroundColor=none;fontColor=default;" parent="Tl5CC2s2IY_5zqogpV7w-1" edge="1">
@@ -482,26 +506,44 @@
         <mxCell id="Tl5CC2s2IY_5zqogpV7w-17" value="Youtube Unity Implementation :&lt;br&gt;https://www.youtube.com/&lt;br&gt;watch?v=T_sBYgP7_2k&amp;amp;t=312s" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;rounded=0;glass=0;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry y="153" width="200" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cp3auHCiEgPAycjXVG3g-0" value="Survivre Nuit" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
-          <mxGeometry x="1245" y="240" width="120" height="60" as="geometry" />
+        <mxCell id="cp3auHCiEgPAycjXVG3g-0" value="Survivre Nuit" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
+          <mxGeometry x="1245" y="480" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cp3auHCiEgPAycjXVG3g-1" value="Créer un Worker" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+        <mxCell id="cp3auHCiEgPAycjXVG3g-1" value="Créer un Worker" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="930" y="190" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cp3auHCiEgPAycjXVG3g-2" value="Créer un&lt;br&gt;Cart" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+        <mxCell id="cp3auHCiEgPAycjXVG3g-2" value="Créer un&lt;br&gt;Cart" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="930" y="270" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cp3auHCiEgPAycjXVG3g-3" value="Research&lt;br&gt;(+1)" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+        <mxCell id="cp3auHCiEgPAycjXVG3g-3" value="Research&lt;br&gt;(+1)" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
           <mxGeometry x="930" y="350" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="7eH8xSY3Qbm1ylYSaBGg-1" value="Influence Units for fuel" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
-          <mxGeometry x="930" y="490" width="120" height="60" as="geometry" />
+        <mxCell id="7eH8xSY3Qbm1ylYSaBGg-1" value="Influence Units for fuel" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="Tl5CC2s2IY_5zqogpV7w-1" vertex="1">
+          <mxGeometry x="930" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uxisa7uM9MeZCQgqg_9C-0" value="Mine for Unit" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+          <mxGeometry x="930" y="585" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RofNwJsrom6Y-EooK5J_-0" value="Créer plus de Carts" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+          <mxGeometry x="1245" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RofNwJsrom6Y-EooK5J_-1" value="Débloquer de plus de technologies" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+          <mxGeometry x="1245" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RofNwJsrom6Y-EooK5J_-2" value="Created Cart" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+          <mxGeometry x="604" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RofNwJsrom6Y-EooK5J_-3" value="Researched" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+          <mxGeometry x="604" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RofNwJsrom6Y-EooK5J_-4" value="can Survive Night" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="Tl5CC2s2IY_5zqogpV7w-1">
+          <mxGeometry x="604" y="480" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="Unit" id="iCrXSQWr_TIqomq4VC0N">
-    <mxGraphModel dx="1737" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1303" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="rhBiu8uq_mzQgDUC2LpY-0" />
         <mxCell id="rhBiu8uq_mzQgDUC2LpY-1" parent="rhBiu8uq_mzQgDUC2LpY-0" />
@@ -658,89 +700,98 @@
         <mxCell id="n9IVcjGgEP7K69iAtJKT-0" value="Optimiser&lt;br&gt;cout nuit" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;fillColor=#f8cecc;strokeColor=#b85450;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="1240" y="227" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-0" value="" style="orthogonalLoop=1;jettySize=auto;html=1;rounded=0;shape=link;labelBackgroundColor=none;fontColor=default;" edge="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-0" value="" style="orthogonalLoop=1;jettySize=auto;html=1;rounded=0;shape=link;labelBackgroundColor=none;fontColor=default;" parent="rhBiu8uq_mzQgDUC2LpY-1" edge="1">
           <mxGeometry width="100" relative="1" as="geometry">
             <mxPoint x="1480" y="1040" as="sourcePoint" />
             <mxPoint x="1130" y="1040" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-1" value="Is Night cost optimal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="240" width="120" height="60" as="geometry" />
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-1" value="Is Night cost optimal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="310" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-2" value="Is in city" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="312" width="120" height="60" as="geometry" />
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-2" value="Is in city" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="382" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-4" value="is Inventory Full" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="465" width="120" height="60" as="geometry" />
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-4" value="is Inventory Full" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="535" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-5" value="is Inventory Empty" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="542.5" width="120" height="60" as="geometry" />
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-5" value="is Inventory Empty" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="612.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-6" value="Is Mining" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="620" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-7" value="Is Coal neighbor" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="760" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-8" value="Is Uranium neighbor" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="830" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-9" value="Is Wood neighbor" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-6" value="Is Mining" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="690" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-10" value="Can mine Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-7" value="Is Coal neighbor" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-8" value="Is Uranium neighbor" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="900" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-11" value="Can mine Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-9" value="Is Wood neighbor" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-10" value="Can mine Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="970" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-12" value="Is inventory empty" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-11" value="Can mine Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="1040" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-13" value="Is outside city" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="604" y="390" width="120" height="60" as="geometry" />
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-13" value="Is outside city" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
+          <mxGeometry x="604" y="460" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-14" value="can Build city" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-14" value="can Build city" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="1120" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-15" value="transport Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-15" value="transport Coal" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="1200" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-16" value="transport Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-16" value="transport Uranium" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="1280" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-17" value="is on Road" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-17" value="is on Road" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="604" y="1360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-18" value="is Road instant action Worker" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-18" value="is Road instant action Worker" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1440" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-19" value="is Road instant action Cart" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-19" value="is Road instant action Cart" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1520" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-20" value="can receive resources" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-20" value="can receive resources" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1600" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-21" value="is Night" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-21" value="is Night" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1680" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-22" value="Is Mining" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
-          <mxGeometry x="600" y="1754" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-23" value="Is surviving&lt;br&gt;(in cities)" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-23" value="Is surviving&lt;br&gt;(in cities)" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1830" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-24" value="is on non friendly Road" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-24" value="is on non friendly Road" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="739" y="1360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-25" value="has cooldown" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-25" value="has cooldown" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1910" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-26" value="is road max level" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-26" value="is road max level" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="739" y="1440" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eDsf8lfRjrnVCIAgu0m5-27" value="has path processed" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+        <mxCell id="eDsf8lfRjrnVCIAgu0m5-27" value="has path processed" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" parent="rhBiu8uq_mzQgDUC2LpY-1" vertex="1">
           <mxGeometry x="600" y="1990" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ghmhGmO8_xiFq8J5t6-I-0" value="Cannot Survive Night" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+          <mxGeometry x="604" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ghmhGmO8_xiFq8J5t6-I-1" value="Prepare Move" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+          <mxGeometry x="930" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ghmhGmO8_xiFq8J5t6-I-2" value="Is in danger (too many ennemies)" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+          <mxGeometry x="604" y="2090" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ghmhGmO8_xiFq8J5t6-I-3" value="Retreat&lt;br&gt;(Danger)" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+          <mxGeometry x="930" y="900" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ghmhGmO8_xiFq8J5t6-I-4" value="Stay Safe" style="whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;" vertex="1" parent="rhBiu8uq_mzQgDUC2LpY-1">
+          <mxGeometry x="1240" y="1380" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
