@@ -1,4 +1,4 @@
-#include "PathfindingAlgorithm.hpp";
+#include "PathfindingAlgorithm.hpp"
 #include "ReservationTable.hpp"
 
 void IPathfindingMultiAlgorithm::applyReservations(const std::map<int, AgentPath>& paths, ReservationTable& reservationTable)

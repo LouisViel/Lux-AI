@@ -1,6 +1,6 @@
 #pragma once
 #include "../Module.hpp"
-#include "../IPathFindingAlgorithm.hpp"
+#include "../PathFindingAlgorithm.hpp"
 #include "Constraint.hpp"
 #include "PathKey.hpp"
 

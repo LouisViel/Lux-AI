@@ -38,7 +38,7 @@ AgentPath AStarPathfinder::computePath(
 
 	// Create start node & register it
 	float heur = heuristic(agent.start, agent.goal);
-	NodePtr startNode = std::make_shared<Node>(heur, 0.0f, std::weak_ptr<AStarPathfinder::Node>(), agent.start, time);
+	NodePtr startNode = std::make_shared<Node>(heur, 0.0f, std::shared_ptr<AStarPathfinder::Node>(), agent.start, time);
 	openedQueue.emplace(startNode->getCost(), startNode);
 
 	// Initialize goalNode
