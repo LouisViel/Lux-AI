@@ -210,6 +210,24 @@ bool LuxHelper::nightCostOptimal(int nightCount, int fuelCost, int wood, int coa
 	} return true;
 }
 
+bool LuxHelper::citySurviveNight(const lux::City* city)
+{
+	int cityCost = 0;
+	for(const lux::CityTile& tile : city->citytiles)
+	{
+		const Position& p = tile.pos;
+		int costFactor = 0;
+		for (uint32_t i = 0; i < 4; i++)
+		{
+			const lux::CityTile* neighbour = LuxHelper::getCity(Position(p.x + dirs[i].x, p.y + dirs[i].y));
+			if (neighbour && neighbour->team == tile.team)
+				costFactor++;
+		}
+		cityCost += 23 - 5 * costFactor;
+	}
+	return city->fuel - cityCost > 0;
+}
+
 bool LuxHelper::isNight()
 {
 	ACCESS_GAME;
