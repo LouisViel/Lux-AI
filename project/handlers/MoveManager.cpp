@@ -74,7 +74,11 @@ void MoveManager::compute(int time)
 
 bool MoveManager::validate(int agentId, const Position& pos, int time)
 {
-	return true; // TODO - Implement
+	// No ennemy city
+	const lux::Cell* const cell = LuxHelper::getCell(pos);
+	const lux::Unit* const unit = LuxHelper::getUnit(LuxHelper::getId(agentId));
+	if (!cell || !unit) return false;
+	return cell->citytile ? cell->citytile->team == unit->team : true;
 }
 
 float MoveManager::heuristic(const Position& start, const Position& end)

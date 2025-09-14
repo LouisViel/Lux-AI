@@ -69,22 +69,49 @@
     <ClCompile Include="modules\pathfinding\utils\PathCache.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\handlers\CityHandler.cpp">
+    <ClCompile Include="project\handlers\handlers\CityHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\handlers\GlobalHandler.cpp">
+    <ClCompile Include="project\handlers\handlers\GlobalHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\handlers\GoapHandler.cpp">
+    <ClCompile Include="project\handlers\handlers\GoapHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="project\handlers\UnitHandler.cpp">
+    <ClCompile Include="project\handlers\handlers\UnitHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="modules\pathfinding\PathFindingAlgorithm.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="project\LuxHelper.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\units\WorkerHandler.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\units\CartHandler.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\strategies\IdleStrategy.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\strategies\Strategies.hpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\MineManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\MoveManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\TransferManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\PillageManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project\handlers\strategies\MineStrategy.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -182,19 +209,43 @@
     <ClInclude Include="modules\pathfinding\utils\PathCache.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\handlers\CityHandler.hpp">
+    <ClInclude Include="project\handlers\handlers\CityHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\handlers\GlobalHandler.hpp">
+    <ClInclude Include="project\handlers\handlers\GlobalHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\handlers\GoapHandler.hpp">
+    <ClInclude Include="project\handlers\handlers\GoapHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="project\handlers\UnitHandler.hpp">
+    <ClInclude Include="project\handlers\handlers\UnitHandler.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="project\LuxHelper.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\units\WorkerHandler.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\units\CartHandler.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\strategies\IdleStrategy.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\MineManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\MoveManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\TransferManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\PillageManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="project\handlers\strategies\MineStrategy.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

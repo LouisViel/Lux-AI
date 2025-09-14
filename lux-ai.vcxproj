@@ -134,10 +134,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="project\handlers\strategies\MineStrategy.cpp" />
+    <ClCompile Include="project\handlers\PillageManager.cpp" />
+    <ClCompile Include="project\handlers\MoveManager.cpp" />
+    <ClCompile Include="project\handlers\MineManager.cpp" />
+    <ClCompile Include="project\handlers\strategies\IdleStrategy.cpp" />
+    <ClCompile Include="project\handlers\strategies\Strategies.hpp" />
+    <ClCompile Include="project\handlers\units\CartHandler.cpp" />
     <ClCompile Include="project\LuxHelper.cpp" />
     <ClCompile Include="modules\pathfinding\PathFindingAlgorithm.cpp" />
-    <ClCompile Include="project\handlers\CityHandler.cpp" />
-    <ClCompile Include="project\handlers\GlobalHandler.cpp" />
+    <ClCompile Include="project\handlers\handlers\CityHandler.cpp" />
+    <ClCompile Include="project\handlers\handlers\GlobalHandler.cpp" />
     <ClCompile Include="modules\pathfinding\cbs\CBSPathfinder.cpp" />
     <ClCompile Include="modules\pathfinding\astar\AStarPathfinder.cpp" />
     <ClCompile Include="modules\goap\ActionPlan.cpp" />
@@ -156,13 +163,21 @@
     <ClCompile Include="modules\pathfinding\ReservationTable.cpp" />
     <ClCompile Include="modules\pathfinding\MultiAgentPathfinder.cpp" />
     <ClCompile Include="modules\pathfinding\utils\PathCache.cpp" />
-    <ClCompile Include="project\handlers\GoapHandler.cpp" />
-    <ClCompile Include="project\handlers\UnitHandler.cpp" />
+    <ClCompile Include="project\handlers\handlers\GoapHandler.cpp" />
+    <ClCompile Include="project\handlers\handlers\UnitHandler.cpp" />
+    <ClCompile Include="project\handlers\units\WorkerHandler.cpp" />
+    <ClCompile Include="project\handlers\TransferManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="project\handlers\strategies\MineStrategy.hpp" />
+    <ClInclude Include="project\handlers\PillageManager.hpp" />
+    <ClInclude Include="project\handlers\MoveManager.hpp" />
+    <ClInclude Include="project\handlers\MineManager.hpp" />
+    <ClInclude Include="project\handlers\strategies\IdleStrategy.hpp" />
+    <ClInclude Include="project\handlers\units\CartHandler.hpp" />
     <ClInclude Include="project\LuxHelper.hpp" />
-    <ClInclude Include="project\handlers\CityHandler.hpp" />
-    <ClInclude Include="project\handlers\GlobalHandler.hpp" />
+    <ClInclude Include="project\handlers\handlers\CityHandler.hpp" />
+    <ClInclude Include="project\handlers\handlers\GlobalHandler.hpp" />
     <ClInclude Include="modules\pathfinding\cbs\CBSPathfinder.hpp" />
     <ClInclude Include="modules\pathfinding\utils\Constraint.hpp" />
     <ClInclude Include="modules\pathfinding\astar\AStarPathfinder.hpp" />
@@ -193,9 +208,11 @@
     <ClInclude Include="modules\pathfinding\MultiAgentPathfinder.hpp" />
     <ClInclude Include="modules\pathfinding\utils\PathKey.hpp" />
     <ClInclude Include="modules\pathfinding\utils\PathCache.hpp" />
-    <ClInclude Include="project\handlers\GoapHandler.hpp" />
-    <ClInclude Include="project\handlers\UnitHandler.hpp" />
+    <ClInclude Include="project\handlers\handlers\GoapHandler.hpp" />
+    <ClInclude Include="project\handlers\handlers\UnitHandler.hpp" />
+    <ClInclude Include="project\handlers\TransferManager.hpp" />
     <ClInclude Include="utils.hpp" />
+    <ClInclude Include="project\handlers\units\WorkerHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
