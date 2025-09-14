@@ -1,5 +1,6 @@
 #include "GoapHandler.hpp"
 #include "modules/goap/GoapPlanner.hpp"
+#include "HandlersManager.h"
 
 GoapHandler::GoapHandler() : GoapHandler("-") {}
 
@@ -7,6 +8,7 @@ GoapHandler::GoapHandler(std::string id) :
 	id(id), agent(std::make_shared<GoapAgent>()),
 	factory(utils::make_unique<BeliefFactory>(agent, agent->beliefs))
 {
+	HandlersManager::addHandler(this);
 	setupBeliefs();
 	setupActions();
 	setupGoals();

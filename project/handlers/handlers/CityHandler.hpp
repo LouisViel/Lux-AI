@@ -11,11 +11,15 @@ class CityHandler : public GoapHandler
 
 	int workerCreated = 0;
 	int cartCreated = 0;
+
 	lux::Position cityPosition;
+
+	public:
 	bool createdWorker;
 	bool createdCart;
 	bool researched;
 	virtual void setupBeliefs() override;
 	virtual void setupActions() override;
 	virtual void setupGoals() override;
+	const lux::CityTile* getTile();
 };
