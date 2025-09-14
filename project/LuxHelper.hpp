@@ -48,6 +48,8 @@ public:
 	static bool isValid(const lux::Position& pos);
 	static lux::Cell* getCell(const lux::Position& pos);
 
+	static lux::DIRECTIONS getDirection(const lux::Position& pos, const lux::Position& target);
+
 public:
 	static const lux::Unit* const getUnit(const lux::Position& pos);
 	static const lux::Unit* const getUnit(std::string id);

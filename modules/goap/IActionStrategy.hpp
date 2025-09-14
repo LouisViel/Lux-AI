@@ -10,5 +10,5 @@ public:
 
 	virtual void start() = 0;
 	virtual void update(int turnId) = 0;
-	virtual void stop() const = 0;
+	virtual void stop() = 0;
 };

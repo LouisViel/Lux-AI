@@ -20,7 +20,7 @@ void IdleStrategy::update(int turnId)
     // Empty
 }
 
-void IdleStrategy::stop() const
+void IdleStrategy::stop()
 {
     // Empty
 }

@@ -22,11 +22,11 @@ void UnitHandler::setupBeliefs()
 		return LuxHelper::surviveNight(LuxHelper::nightDuration, this->nightFuel, unit->cargo);
 	});
 	factory->addInvert("CannotSurviveNight", "SurviveNight");
-	factory->addBelief("NightCostOptimal", [this]() {
+	/*factory->addBelief("NightCostOptimal", [this]() {
 		ACCESS_UNIT;
 		const lux::Cargo& cargo = unit->cargo;
 		return LuxHelper::nightCostOptimal(LuxHelper::nightDuration, this->nightFuel, cargo.wood);
-	});
+	});*/
 	factory->addBelief("IsNight", []() {
 		return LuxHelper::isNight();
 	});
@@ -42,9 +42,9 @@ void UnitHandler::setupBeliefs()
 
 	// Inventory beliefs
 	factory->addBelief("InventoryFull", [this]() {
-		ACCESS_UNIT;
-		return unit->getCargoSpaceLeft() <= 0;
+		return this->isFullInventory();
 	});
+	factory->addInvert("InventoryNotFull", "InventoryFull");
 	factory->addBelief("InventoryEmpty", [this]() {
 		ACCESS_UNIT;
 		const lux::Cargo& cargo = unit->cargo;
@@ -53,9 +53,9 @@ void UnitHandler::setupBeliefs()
 			cargo.uranium <= 0;
 	});
 	factory->addInvert("InventoryFilled", "InventoryEmpty");
-	factory->addBelief("InventoryTransfered", [this]() {
+	/*factory->addBelief("InventoryTransfered", [this]() {
 		return this->transfered;
-	});
+	});*/
 
 
 	// Transport beliefs
@@ -113,8 +113,8 @@ void UnitHandler::setupBeliefs()
 
 
 	// Experimental beliefs
-	factory->addBelief("IsSurviving", []() { return false; });
-	factory->addBelief("IsInDanger", []() { return false; });
+	//factory->addBelief("IsSurviving", []() { return false; });
+	//factory->addBelief("IsInDanger", []() { return false; });
 }
 
 
@@ -153,24 +153,13 @@ void UnitHandler::setupActions()
 	//);
 
 	// TODO : C'est vraiment utile ???? Pas plutot integrer ailleurs ???
-	agent->actions->insert(AgentAction::Builder("Transfer")
-		.withStrategy(nullptr) // TODO : IMPLEMENT --------------------------------
-		.addPrecondition(beliefs["InventoryFilled"])
-		.addEffect(beliefs["InventoryTransfered"])
-		.withCost(1.0f)
-		.buildShared()
-	);
-
-	// TODO : C'est vraiment utile ???? Pas plutot integrer autrement ???
-	agent->actions->insert(AgentAction::Builder("Mine")
-		.withStrategy(nullptr) // TODO : IMPLEMENT --------------------------------
-		//.addPrecondition(beliefs["MinePrepared"])
-		//.addEffect(beliefs["Mined"])
-		.addEffect(beliefs["InventoryFull"])
-		.addEffect(beliefs["InventoryFilled"])
-		.withCost(1.0f)
-		.buildShared()
-	);
+	//agent->actions->insert(AgentAction::Builder("Transfer")
+	//	.withStrategy(nullptr) // TODO : IMPLEMENT --------------------------------
+	//	.addPrecondition(beliefs["InventoryFilled"])
+	//	.addEffect(beliefs["InventoryTransfered"])
+	//	.withCost(1.0f)
+	//	.buildShared()
+	//);
 
 	agent->actions->insert(AgentAction::Builder("SurviveNight")
 		.withStrategy(nullptr)
@@ -204,11 +193,11 @@ void UnitHandler::setupGoals()
 		.buildShared()
 	);
 
-	agent->goals->insert(AgentGoal::Builder("FullInventory")
+	/*agent->goals->insert(AgentGoal::Builder("FullInventory")
 		.withPriority(1)
 		.addDesiredEffect(beliefs["InventoryFull"])
 		.buildShared()
-	);
+	);*/
 
 	agent->goals->insert(AgentGoal::Builder("SupplyCity")
 		.withPriority(1) // TODO : Implement City Manager telling who need & how much + effect based on distance & assignements already
@@ -216,11 +205,16 @@ void UnitHandler::setupGoals()
 		.addDesiredEffect(beliefs["InCity"])
 		.buildShared()
 	);
+}
 
-	agent->goals->insert(AgentGoal::Builder("Mine")
-		.withPriority(1) // TODO : Implement
-		.addDesiredEffect(beliefs["InventoryFull"])
-		.addDesiredEffect(beliefs["SurviveNight"])
-		.buildShared()
-	);
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+bool UnitHandler::isFullInventory() const
+{
+	ACCESS_UNIT;
+	return unit->getCargoSpaceLeft() <= 0;
 }

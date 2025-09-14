@@ -15,4 +15,5 @@ public:
 
 	bool isMining() const;
 	bool isMining(const lux::ResourceType resource) const;
+	bool canMove() const;
 };

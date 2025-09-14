@@ -135,6 +135,18 @@ lux::Cell* LuxHelper::getCell(const lux::Position& pos)
 	return isValid(pos) ? LuxHelper::gameMap->getCellByPos(pos) : nullptr;
 }
 
+lux::DIRECTIONS LuxHelper::getDirection(const lux::Position& pos, const lux::Position& target)
+{
+	if (pos == target) return lux::DIRECTIONS::CENTER;
+	if (target.x == pos.x) {
+		if (target.y == pos.y - 1) return lux::DIRECTIONS::NORTH;
+		if (target.y == pos.y + 1) return lux::DIRECTIONS::SOUTH;
+	} else if (target.y == pos.y) {
+		if (target.x == pos.x + 1) return lux::DIRECTIONS::EAST;
+		if (target.x == pos.x - 1) return lux::DIRECTIONS::WEST;
+	} return lux::DIRECTIONS::CENTER;
+}
+
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -225,10 +237,10 @@ bool LuxHelper::isNight()
 
 const lux::City* const LuxHelper::getCity(const std::string& id)
 {
-	std::map<std::string, lux::City>::const_iterator it = player->cities.find(id);
-	if (it != player->cities.end()) return &it->second;
-	std::map<std::string, lux::City>::const_iterator it = opponent->cities.find(id);
-	if (it != opponent->cities.end()) return &it->second;
+	std::map<std::string, lux::City>::const_iterator itp = player->cities.find(id);
+	if (itp != player->cities.end()) return &itp->second;
+	std::map<std::string, lux::City>::const_iterator ito = opponent->cities.find(id);
+	if (ito != opponent->cities.end()) return &ito->second;
 	return nullptr;
 }
 

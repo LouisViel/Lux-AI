@@ -23,4 +23,6 @@ public:
 	virtual void setupBeliefs() override;
 	virtual void setupActions() override;
 	virtual void setupGoals() override;
+
+	bool isFullInventory() const;
 };

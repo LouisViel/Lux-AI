@@ -23,11 +23,12 @@ int main()
   LuxHelper::init();
 
   // Initialize global managers
-  MoveManager moveManager = MoveManager(gameState.mapWidth, gameState.mapHeight);
-  MineManager mineManager = MineManager(gameState.map.map);
+  MoveManager moveManager(gameState.mapWidth, gameState.mapHeight);
+  MineManager mineManager(gameState.map.map);
   staticMoveManager = std::reference_wrapper<MoveManager>(moveManager);
   staticMineManager = std::reference_wrapper<MineManager>(mineManager);
 
+  // Initialize actions buffer with global access
   vector<string> actions = vector<string>();
   staticActions = std::reference_wrapper<std::vector<std::string>>(actions);
 

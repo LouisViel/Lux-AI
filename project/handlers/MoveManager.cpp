@@ -74,7 +74,7 @@ void MoveManager::compute(int time)
 
 bool MoveManager::validate(int agentId, const Position& pos, int time)
 {
-	// No ennemy city
+	// No ennemy city (can also add other checks if wanted)
 	const lux::Cell* const cell = LuxHelper::getCell(pos);
 	const lux::Unit* const unit = LuxHelper::getUnit(LuxHelper::getId(agentId));
 	if (!cell || !unit) return false;
@@ -83,6 +83,7 @@ bool MoveManager::validate(int agentId, const Position& pos, int time)
 
 float MoveManager::heuristic(const Position& start, const Position& end)
 {
+	// Manhattan distance heuristic
 	return AStarHelper::manhattan(start, end);;
 }
 
@@ -93,6 +94,7 @@ float MoveManager::extraCost(int agentId, const Position& pos, int time)
 
 bool MoveManager::sharedAllowed(int id1, int id2, const Position& pos, int time)
 {
+	// Check if target position is friendly city
 	const lux::Cell* const cell = LuxHelper::getCell(pos);
 	const lux::Unit* const unit = LuxHelper::getUnit(LuxHelper::getId(id1));
 	if (!cell || !unit) return false;
