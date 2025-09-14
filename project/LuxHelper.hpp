@@ -56,6 +56,7 @@ public:
 	static const lux::Unit* const getUnit(int player, std::string id);
 	static const lux::Unit* const getUnit(const lux::Player* const player, std::string id);
 
+	static bool citySurviveNight(const lux::City* city);
 	static bool surviveNight(int nightCount, int fuelCost, const lux::Cargo& cargo);
 	static bool nightCostOptimal(int nightCount, int fuelCost, int wood = 0, int coal = 0, int uranium = 0);
 	static bool isNight();
