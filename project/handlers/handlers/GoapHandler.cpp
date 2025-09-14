@@ -71,6 +71,11 @@ void GoapHandler::update(int time)
 	}
 }
 
+const std::string& GoapHandler::getId() const
+{
+	return this->id;
+}
+
 void GoapHandler::calculatePlan()
 {
 	// Get or Select Goals to check based on current priority (> current if running already)

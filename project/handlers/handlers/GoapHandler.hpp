@@ -38,6 +38,8 @@ public:
 	virtual ~GoapHandler() = default;
 	virtual void update(int time);
 
+	const std::string& getId() const;
+
 private:
 	void calculatePlan();
 };
