@@ -19,6 +19,7 @@ public:
 
 	// Template - void addBelief(std::string key, FuncBool condition);
 	// Template - void addLocationBelief(std::string key, float distance, FuncPosition locationProvider);
+	void addInvert(const std::string& key, const std::string& invert);
 	void addLocationBelief(const std::string& key, float distance, Position locationCondition);
 	void addSensorBelief(const std::string& key, std::weak_ptr<AgentSensor> sensor);
 

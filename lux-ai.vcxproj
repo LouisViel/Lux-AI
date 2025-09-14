@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="project\LuxHelper.cpp" />
     <ClCompile Include="modules\pathfinding\PathFindingAlgorithm.cpp" />
     <ClCompile Include="project\handlers\CityHandler.cpp" />
     <ClCompile Include="project\handlers\GlobalHandler.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="project\handlers\UnitHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="project\LuxHelper.hpp" />
     <ClInclude Include="project\handlers\CityHandler.hpp" />
     <ClInclude Include="project\handlers\GlobalHandler.hpp" />
     <ClInclude Include="modules\pathfinding\cbs\CBSPathfinder.hpp" />

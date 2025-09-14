@@ -3,6 +3,8 @@
 #include "modules/goap/BeliefFactory.hpp"
 #include "modules/goap/AgentAction.hpp"
 #include "modules/goap/AgentGoal.hpp"
+#include "../strategies/Strategies.hpp"
+#include "lux/kit.hpp"
 
 class GoapHandler
 {
@@ -22,9 +24,11 @@ protected:
 protected:
 	std::unique_ptr<BeliefFactory> factory;
 	std::shared_ptr<GoapAgent> agent;
+	std::string id = "-";
 
 protected:
 	GoapHandler();
+	GoapHandler(std::string id);
 	virtual void setupBeliefs() { }
 	virtual void setupActions() { }
 	virtual void setupGoals() { }

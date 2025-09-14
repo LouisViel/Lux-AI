@@ -1,13 +1,13 @@
 #pragma once
-#include "GoapHandler.hpp"
+#include "../handlers/UnitHandler.hpp"
 
-class UnitHandler : public GoapHandler
+class CartHandler : public UnitHandler
 {
 public:
-	UnitHandler();
-	virtual ~UnitHandler() = default;
+	using UnitHandler::UnitHandler;
 
 	virtual void setupBeliefs() override;
 	virtual void setupActions() override;
 	virtual void setupGoals() override;
 };
+

@@ -51,7 +51,7 @@ public:
 
 		AgentGoal::Builder& withPriority(float priority);
 		// Template - AgentGoal::Builder& withPriority(Func<float> priority);
-		AgentGoal::Builder& withDesiredEffect(std::weak_ptr<AgentBelief> effect);
+		AgentGoal::Builder& addDesiredEffect(std::weak_ptr<AgentBelief> effect);
 
 		std::unique_ptr<AgentGoal> build();
 		std::shared_ptr<AgentGoal> buildShared();

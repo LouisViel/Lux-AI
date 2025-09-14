@@ -1,8 +1,10 @@
 #include "GoapHandler.hpp"
 #include "modules/goap/GoapPlanner.hpp"
 
-GoapHandler::GoapHandler() :
-	agent(std::make_shared<GoapAgent>()),
+GoapHandler::GoapHandler() : GoapHandler("-") {}
+
+GoapHandler::GoapHandler(std::string id) :
+	id(id), agent(std::make_shared<GoapAgent>()),
 	factory(utils::make_unique<BeliefFactory>(agent, agent->beliefs))
 {
 	setupBeliefs();

@@ -4,19 +4,22 @@
 #include <vector>
 #include <set>
 #include <stdio.h>
-#include "modules/goap/AgentBelief.hpp"
-#include "modules/goap/BeliefFactory.hpp"
-#include "modules/goap/GoapAgent.hpp"
+
+#include "utils.hpp"
+#include "project/LuxHelper.hpp"
+
+
 
 using namespace std;
 using namespace lux;
 int main()
 {
   kit::Agent gameState = kit::Agent();
+  staticGame = std::reference_wrapper<kit::Agent>(gameState);
+
   // initialize
   gameState.initialize();
-
-  //BeliefFactory test = BeliefFactory(std::weak_ptr<GoapAgent>(std::make_shared<GoapAgent>()), std::map<std::string, std::shared_ptr<AgentBelief>>());
+  LuxHelper::init();
 
   while (true)
   {
@@ -27,11 +30,10 @@ int main()
     vector<string> actions = vector<string>();
     
     /** AI Code Goes Below! **/
-
     Player &player = gameState.players[gameState.id];
     Player &opponent = gameState.players[(gameState.id + 1) % 2];
-
     GameMap &gameMap = gameState.map;
+    LuxHelper::update(player, opponent, gameMap);
 
     vector<Cell *> resourceTiles = vector<Cell *>();
     for (int y = 0; y < gameMap.height; y++)

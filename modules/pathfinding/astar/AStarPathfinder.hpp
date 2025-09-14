@@ -61,8 +61,9 @@ public:
             std::is_convertible<T2, Func3<float, int, Position, int>>::value;
     };
 
-    template<typename T1, typename T2, typename T3, typename = typename std::enable_if<AStarPathfinder::EnableIf<T1, T2, T3>::value>::type>
-    AStarPathfinder(int width, int height, T1&& validate, T2&& heuristic, T3 extraCost) :
+    template<typename T1, typename T2, typename T3>
+    //template<typename T1, typename T2, typename T3, typename = typename std::enable_if<AStarPathfinder::EnableIf<T1, T2, T3>::value>::type>
+    AStarPathfinder(int width, int height, T1&& validate, T2&& heuristic, T3&& extraCost) :
         width(width), height(height),
         validate(std::forward<T1>(validate)),
         heuristic(std::forward<T2>(heuristic)),

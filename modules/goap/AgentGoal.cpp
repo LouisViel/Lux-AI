@@ -34,7 +34,7 @@ AgentGoal::Builder& AgentGoal::Builder::withPriority(float priority)
 	return *this;
 }
 
-AgentGoal::Builder& AgentGoal::Builder::withDesiredEffect(std::weak_ptr<AgentBelief> effect)
+AgentGoal::Builder& AgentGoal::Builder::addDesiredEffect(std::weak_ptr<AgentBelief> effect)
 {
 	if (built) throw std::runtime_error("Builder already built");
 	goal->desiredEffects.insert(effect);

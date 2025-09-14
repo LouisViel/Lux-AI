@@ -1,3 +1,6 @@
+#ifndef kit_define
+#define kit_define
+
 #include "kit.hpp"
 #include <ostream>
 #include <string>
@@ -25,3 +28,5 @@ namespace lux
 		return out;
 	};
 }
+
+#endif

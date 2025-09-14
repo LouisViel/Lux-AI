@@ -18,6 +18,21 @@ BeliefFactory::~BeliefFactory() { }
 //////////////////////////////////////////////////////////////////
 
 
+void BeliefFactory::addInvert(const std::string& key, const std::string& invert)
+{
+	std::shared_ptr<BeliefMap> beliefPtr = beliefs.lock();
+	if (!beliefPtr) return;
+	auto it = beliefPtr->find(invert);
+	if (it == beliefPtr->end()) return;
+
+	const std::weak_ptr<AgentBelief> belief = it->second;
+	addBelief(key, [belief]() {
+		if (std::shared_ptr<AgentBelief> ptr = belief.lock()) {
+			return !ptr->evaluate();
+		} return false;
+	});
+}
+
 void BeliefFactory::addLocationBelief(const std::string& key, float distance, Position locationCondition)
 {
 	std::shared_ptr<BeliefMap> beliefPtr = beliefs.lock();
