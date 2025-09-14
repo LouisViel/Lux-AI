@@ -9,6 +9,7 @@
 #include "project/LuxHelper.hpp"
 #include "project/handlers/MoveManager.hpp"
 #include "project/handlers/MineManager.hpp"
+#include "project/HandlerHelper.hpp"
 
 
 using namespace std;
@@ -32,6 +33,11 @@ int main()
   vector<string> actions = vector<string>();
   staticActions = std::reference_wrapper<std::vector<std::string>>(actions);
 
+  // Declare / Initialize handlers containers
+  std::unordered_map<lux::Position, CityHandler, PositionHash> cityHandlers;
+  std::unordered_map<std::string, WorkerHandler> workerHandlers;
+  std::unordered_map<std::string, CartHandler> cartHandlers;
+
   while (true)
   {
     /** Do not edit! **/
@@ -43,9 +49,21 @@ int main()
     Player &player = gameState.players[gameState.id];
     Player &opponent = gameState.players[(gameState.id + 1) % 2];
     GameMap &gameMap = gameState.map;
-    LuxHelper::update(player, opponent, gameMap);
+    int turnId = gameState.turn;
 
-    vector<Cell *> resourceTiles = vector<Cell *>();
+    // Update Alive global states & brain handlers
+    LuxHelper::update(player, opponent, gameMap);
+    HandlerHelper::update(cityHandlers, player);
+    HandlerHelper::update(workerHandlers, player);
+    HandlerHelper::update(cartHandlers, player);
+
+    // Call Handlers updates (calling through GOAP & pathfinding, ect.. logic)
+    for (auto it = cityHandlers.begin(); it != cityHandlers.end(); ++it) it->second.update(turnId);
+    for (auto it = workerHandlers.begin(); it != workerHandlers.end(); ++it) it->second.update(turnId);
+    for (auto it = cartHandlers.begin(); it != cartHandlers.end(); ++it) it->second.update(turnId);
+
+    // Original example source code :
+    /*vector<Cell *> resourceTiles = vector<Cell *>();
     for (int y = 0; y < gameMap.height; y++)
     {
       for (int x = 0; x < gameMap.width; x++)
@@ -114,7 +132,7 @@ int main()
           }
         }
       }
-    }
+    }*/
 
     // you can add debug annotations using the methods of the Annotate class.
     // actions.push_back(Annotate::circle(0, 0));

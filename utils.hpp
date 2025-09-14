@@ -21,3 +21,12 @@ static std::reference_wrapper<MineManager> staticMineManager = std::ref(*(MineMa
 
 static std::reference_wrapper<std::vector<std::string>> staticActions = std::ref(*(std::vector<std::string>*)nullptr);
 #define ACCESS_OUTPUT std::vector<std::string>& luxOutput = staticActions.get();
+
+struct PositionHash {
+    std::size_t operator()(lux::Position const& p) const noexcept {
+        // good hash combine for two ints
+        std::size_t h1 = std::hash<int>()(p.x);
+        std::size_t h2 = std::hash<int>()(p.y);
+        return h1 ^ (h2 + 0x9e3779b97f4a7c15ULL + (h1 << 6) + (h1 >> 2));
+    }
+};

@@ -4,6 +4,8 @@
 #include "../strategies/CreateCartStrategy.h"
 #include "../strategies/ResearchStrategy.h"
 
+CityHandler::CityHandler(const std::string& id) : GoapHandler(id) { }
+
 void CityHandler::setupBeliefs()
 {
 	factory->addBelief("Nothing", []() { return false; });

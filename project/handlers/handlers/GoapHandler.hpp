@@ -35,7 +35,7 @@ protected:
 	void resetPlan();
 
 public:
-	virtual ~GoapHandler() = default;
+	virtual ~GoapHandler();
 	virtual void update(int time);
 
 	const std::string& getId() const;

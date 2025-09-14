@@ -14,6 +14,11 @@ GoapHandler::GoapHandler(std::string id) :
 	setupGoals();
 }
 
+GoapHandler::~GoapHandler()
+{
+	HandlersManager::removeHandler(this);
+}
+
 void GoapHandler::resetPlan()
 {
 	agent->currentGoal = std::weak_ptr<AgentGoal>();

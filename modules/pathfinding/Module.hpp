@@ -4,13 +4,13 @@
 #include "lux/position.hpp"
 using Position = lux::Position;
 
-struct PositionHash {
-    std::size_t operator()(const Position& pos) const
-    {
-        // Combinaison simple des coordonnées
-        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
-    }
-};
+//struct PositionHash {
+//    std::size_t operator()(const Position& pos) const
+//    {
+//        // Combinaison simple des coordonnées
+//        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
+//    }
+//};
 
 struct PosTime {
     const Position pos;

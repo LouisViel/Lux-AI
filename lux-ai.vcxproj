@@ -134,11 +134,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="project\HandlerHelper.cpp" />
+    <ClCompile Include="project\handlers\handlers\HandlersManager.cpp" />
+    <ClCompile Include="project\handlers\strategies\CreateCartStrategy.cpp" />
+    <ClCompile Include="project\handlers\strategies\CreateWorkerSrategy.cpp" />
     <ClCompile Include="project\handlers\strategies\MineStrategy.cpp" />
     <ClCompile Include="project\handlers\PillageManager.cpp" />
     <ClCompile Include="project\handlers\MoveManager.cpp" />
     <ClCompile Include="project\handlers\MineManager.cpp" />
     <ClCompile Include="project\handlers\strategies\IdleStrategy.cpp" />
+    <ClCompile Include="project\handlers\strategies\ResearchStrategy.cpp" />
     <ClCompile Include="project\handlers\strategies\Strategies.hpp" />
     <ClCompile Include="project\handlers\units\CartHandler.cpp" />
     <ClCompile Include="project\LuxHelper.cpp" />
@@ -169,11 +174,16 @@
     <ClCompile Include="project\handlers\TransferManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="project\HandlerHelper.hpp" />
+    <ClInclude Include="project\handlers\handlers\HandlersManager.h" />
+    <ClInclude Include="project\handlers\strategies\CreateCartStrategy.h" />
+    <ClInclude Include="project\handlers\strategies\CreateWorkerSrategy.h" />
     <ClInclude Include="project\handlers\strategies\MineStrategy.hpp" />
     <ClInclude Include="project\handlers\PillageManager.hpp" />
     <ClInclude Include="project\handlers\MoveManager.hpp" />
     <ClInclude Include="project\handlers\MineManager.hpp" />
     <ClInclude Include="project\handlers\strategies\IdleStrategy.hpp" />
+    <ClInclude Include="project\handlers\strategies\ResearchStrategy.h" />
     <ClInclude Include="project\handlers\units\CartHandler.hpp" />
     <ClInclude Include="project\LuxHelper.hpp" />
     <ClInclude Include="project\handlers\handlers\CityHandler.hpp" />
