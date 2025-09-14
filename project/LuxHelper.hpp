@@ -58,6 +58,7 @@ public:
 	static bool nightCostOptimal(int nightCount, int fuelCost, int wood = 0, int coal = 0, int uranium = 0);
 	static bool isNight();
 
+	static const lux::City* const getCity(const std::string& id);
 	static const lux::CityTile* const getCity(const lux::Position& pos);
 	static bool isCity(const lux::Position& pos);
 

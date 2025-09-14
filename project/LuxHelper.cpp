@@ -223,6 +223,15 @@ bool LuxHelper::isNight()
 //////////////////////////////////////////////////////////////////
 
 
+const lux::City* const LuxHelper::getCity(const std::string& id)
+{
+	std::map<std::string, lux::City>::const_iterator it = player->cities.find(id);
+	if (it != player->cities.end()) return &it->second;
+	std::map<std::string, lux::City>::const_iterator it = opponent->cities.find(id);
+	if (it != opponent->cities.end()) return &it->second;
+	return nullptr;
+}
+
 const lux::CityTile* const LuxHelper::getCity(const lux::Position& pos)
 {
 	const lux::Cell* const cell = LuxHelper::getCell(pos);
