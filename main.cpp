@@ -7,7 +7,8 @@
 
 #include "utils.hpp"
 #include "project/LuxHelper.hpp"
-
+#include "project/handlers/MoveManager.hpp"
+#include "project/handlers/MineManager.hpp"
 
 
 using namespace std;
@@ -21,13 +22,21 @@ int main()
   gameState.initialize();
   LuxHelper::init();
 
+  // Initialize global managers
+  MoveManager moveManager = MoveManager(gameState.mapWidth, gameState.mapHeight);
+  MineManager mineManager = MineManager(gameState.map.map);
+  staticMoveManager = std::reference_wrapper<MoveManager>(moveManager);
+  staticMineManager = std::reference_wrapper<MineManager>(mineManager);
+
+  vector<string> actions = vector<string>();
+  staticActions = std::reference_wrapper<std::vector<std::string>>(actions);
+
   while (true)
   {
     /** Do not edit! **/
     // wait for updates
     gameState.update();
-
-    vector<string> actions = vector<string>();
+    actions.clear();
     
     /** AI Code Goes Below! **/
     Player &player = gameState.players[gameState.id];
