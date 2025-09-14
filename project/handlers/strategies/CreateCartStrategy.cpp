@@ -30,7 +30,7 @@ void CreateCartStrategy::update(int turnId)
 
 }
 
-void CreateCartStrategy::stop() const
+void CreateCartStrategy::stop()
 {
     // Empty
 }

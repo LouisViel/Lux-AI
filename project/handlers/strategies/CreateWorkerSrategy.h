@@ -14,6 +14,6 @@ public :
 
 	virtual void start() override;
 	virtual void update(int turnId) override;
-	virtual void stop() const override;
+	virtual void stop() override;
 };
 

@@ -30,7 +30,7 @@ void CreateWorkerSrategy::update(int turnId)
     
 }
 
-void CreateWorkerSrategy::stop() const
+void CreateWorkerSrategy::stop()
 {
     // Empty
 }

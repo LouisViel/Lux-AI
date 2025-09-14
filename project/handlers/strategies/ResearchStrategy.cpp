@@ -29,7 +29,7 @@ void ResearchStrategy::update(int turnId)
 
 }
 
-void ResearchStrategy::stop() const
+void ResearchStrategy::stop()
 {
     // Empty
 }
