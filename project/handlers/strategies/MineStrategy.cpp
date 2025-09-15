@@ -18,6 +18,9 @@ bool MineStrategy::isComplete() const
 
 void MineStrategy::start()
 {
+	ACCESS_OUTPUT;
+	luxOutput.push_back(lux::Annotate::circle(0, 0));
+
 	// Check if ready to mine already
 	if (worker->isMining()) {
 		readyToMine = true;

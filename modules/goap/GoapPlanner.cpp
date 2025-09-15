@@ -45,6 +45,8 @@ std::shared_ptr<ActionPlan> GoapPlanner::plan(const std::shared_ptr<GoapAgent>& 
 	for (const std::shared_ptr<AgentGoal>& goal : orderedGoals) {
 		std::shared_ptr<Node> goalNode = std::make_shared<Node>(std::weak_ptr<Node>(), std::weak_ptr<AgentAction>(), goal->getDesiredEffects(), 0);
 
+		
+
 		// If we can find a path to the goal, return the plan
 		if (findPath(goalNode, *agent->actions)) {
 
@@ -94,6 +96,8 @@ std::shared_ptr<ActionPlan> GoapPlanner::plan(const std::shared_ptr<GoapAgent>& 
 
 bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrUnorderedSet<AgentAction>& actions)
 {
+	//return false;
+
 	// Sort Actions in cost order
 	std::vector<std::shared_ptr<AgentAction>> sortedActions(actions.begin(), actions.end());
 	std::sort(sortedActions.begin(), sortedActions.end(),
@@ -103,7 +107,7 @@ bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrU
 
 	// Check all actions if there is a path to fulffill parent
 	for (const std::shared_ptr<AgentAction>& action : sortedActions) {
-		
+
 		// Remove required effects already fullfilled (RemoveWhere)
 		WeakPtrUnorderedSet<AgentBelief>& requiredEffects = parent->getRequiredEffects();
 		for (auto it = requiredEffects.begin(); it != requiredEffects.end(); /* nothing */) {

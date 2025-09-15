@@ -15,6 +15,7 @@ void HandlerHelper::update(std::unordered_map<lux::Position, CityHandler, Positi
             CityHandler& handler = result.first->second;
             handler.cityPosition = tile.pos;
             handler.validThisTurn = true;
+            handler.init();
         }
     }
 
@@ -38,6 +39,7 @@ void HandlerHelper::update(std::unordered_map<std::string, WorkerHandler>& worke
                 std::forward_as_tuple(unit.id)
             );
             result.first->second.validThisTurn = true;
+            result.first->second.init();
 
         } else if (unit.isCart()) {
 
@@ -48,6 +50,7 @@ void HandlerHelper::update(std::unordered_map<std::string, WorkerHandler>& worke
                 std::forward_as_tuple(unit.id)
             );
             result.first->second.validThisTurn = true;
+            result.first->second.init();
         }
     }
 

@@ -32,6 +32,7 @@ public:
 protected:
 	GoapHandler();
 	GoapHandler(std::string id);
+
 	virtual void setupBeliefs() { }
 	virtual void setupActions() { }
 	virtual void setupGoals() { }
@@ -39,6 +40,7 @@ protected:
 
 public:
 	virtual ~GoapHandler();
+	void init();
 	virtual void update(int time);
 
 	const std::string& getId() const;

@@ -47,7 +47,7 @@ int main()
     /** Do not edit! **/
     // wait for updates
     gameState.update();
-    actions.clear();
+    //actions.clear();
     
     /** AI Code Goes Below! **/
     Player &player = gameState.players[gameState.id];

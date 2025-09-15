@@ -11,6 +11,10 @@ GoapHandler::GoapHandler(std::string id) :
 	factory = utils::make_unique<BeliefFactory>(agent, agent->beliefs);
 	agent->gPlanner = std::make_shared<GoapPlanner>();
 	HandlersManager::addHandler(this);
+}
+
+void GoapHandler::init()
+{
 	setupBeliefs();
 	setupActions();
 	setupGoals();
@@ -61,7 +65,7 @@ void GoapHandler::update(int time)
 			}
 		}
 	}
-
+	
 	// If we have an action, update it
 	if (agent->actionPlan && currentAction) {
 		currentAction->update(time);
@@ -102,6 +106,7 @@ void GoapHandler::calculatePlan()
 		);
 	}
 
+	
 	// Plan potential plan & Register it if valid
 	std::shared_ptr<ActionPlan> potentialPlan = agent->gPlanner->plan(agent, goalsToCheck, agent->lastGoal);
 	if (potentialPlan) agent->actionPlan = std::move(potentialPlan);

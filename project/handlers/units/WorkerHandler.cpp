@@ -40,12 +40,12 @@ void WorkerHandler::setupBeliefs()
 	//	ACCESS_UNIT;
 	//	return unit->canBuild(*LuxHelper::gameMap); // TODO : Revoir si on évalue pas ce behaviour juste avec si l'inventaire est full
 	//});
-	//factory->addBelief("CityBuild", [this]() {
-	//	return this->cityBuild;
-	//});
-	//factory->addBelief("RoadDestroyed", [this]() {
-	//	return this->destroyedRoad;
-	//});
+	factory->addBelief("CityBuild", [this]() {
+		return this->cityBuild;
+	});
+	factory->addBelief("RoadDestroyed", [this]() {
+		return this->destroyedRoad;
+	});
 }
 
 void WorkerHandler::setupActions()
@@ -55,8 +55,8 @@ void WorkerHandler::setupActions()
 
 	agent->actions->insert(AgentAction::Builder("MineAction")
 		.withStrategy(utils::make_unique<MineStrategy>(this))
-		.addPrecondition(beliefs["InventoryNotFull"])
-		.addEffect(beliefs["InventoryFull"])
+		//.addPrecondition(beliefs["InventoryNotFull"])
+		//.addEffect(beliefs["InventoryFull"])
 		.addEffect(beliefs["InventoryFilled"])
 		.withCost(1.0f)
 		.buildShared()
@@ -81,12 +81,16 @@ void WorkerHandler::setupActions()
 
 void WorkerHandler::setupGoals()
 {
+	//ACCESS_OUTPUT;
+	//luxOutput.push_back(LuxHelper::getUnit(id)->move(lux::DIRECTIONS::NORTH));
+
 	UnitHandler::setupGoals();
 	ACCESS_BELIEFS;
 
 	agent->goals->insert(AgentGoal::Builder("Mine")
 		.withPriority(2.0f)
-		.addDesiredEffect(beliefs["InventoryFull"])
+		//.addDesiredEffect(beliefs["InventoryFull"])
+		.addDesiredEffect(beliefs["InventoryFilled"])
 		//.addDesiredEffect(beliefs["SurviveNight"])
 		.buildShared()
 	);
