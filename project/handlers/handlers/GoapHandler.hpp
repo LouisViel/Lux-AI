@@ -26,6 +26,9 @@ protected:
 	std::shared_ptr<GoapAgent> agent;
 	std::string id = "-";
 
+public:
+	bool validThisTurn = false;
+
 protected:
 	GoapHandler();
 	GoapHandler(std::string id);

@@ -25,8 +25,12 @@ static std::reference_wrapper<std::vector<std::string>> staticActions = std::ref
 struct PositionHash {
     std::size_t operator()(lux::Position const& p) const noexcept {
         // good hash combine for two ints
+        /*std::size_t h1 = std::hash<int>()(p.x);
+        std::size_t h2 = std::hash<int>()(p.y);
+        return h1 ^ (h2 + 0x9e3779b97f4a7c15ULL + (h1 << 6) + (h1 >> 2));*/
+        //return std::hash<int>()(p.x) ^ (std::hash<int>()(p.y) << 1);
         std::size_t h1 = std::hash<int>()(p.x);
         std::size_t h2 = std::hash<int>()(p.y);
-        return h1 ^ (h2 + 0x9e3779b97f4a7c15ULL + (h1 << 6) + (h1 >> 2));
+        return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
     }
 };

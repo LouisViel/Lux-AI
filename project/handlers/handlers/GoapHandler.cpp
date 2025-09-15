@@ -5,9 +5,11 @@
 GoapHandler::GoapHandler() : GoapHandler("-") {}
 
 GoapHandler::GoapHandler(std::string id) :
-	id(id), agent(std::make_shared<GoapAgent>()),
-	factory(utils::make_unique<BeliefFactory>(agent, agent->beliefs))
+	id(id), agent(std::make_shared<GoapAgent>())
+	//factory(nullptr)
 {
+	factory = utils::make_unique<BeliefFactory>(agent, agent->beliefs);
+	agent->gPlanner = std::make_shared<GoapPlanner>();
 	HandlersManager::addHandler(this);
 	setupBeliefs();
 	setupActions();
@@ -55,7 +57,7 @@ void GoapHandler::update(int time)
 					agent->currentGoal = std::weak_ptr<AgentGoal>();
 					agent->currentAction = std::weak_ptr<AgentAction>();
 					currentAction = std::shared_ptr<AgentAction>();
-				}	
+				}
 			}
 		}
 	}

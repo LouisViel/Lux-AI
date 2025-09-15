@@ -12,6 +12,5 @@ public:
 	~HandlerHelper() = delete;
 
 	static void update(std::unordered_map<lux::Position, CityHandler, PositionHash>& cityHandlers, lux::Player& player);
-	static void update(std::unordered_map<std::string, WorkerHandler>& workerHandlers, lux::Player& player);
-	static void update(std::unordered_map<std::string, CartHandler>& cartHandlers, lux::Player& player);
+	static void update(std::unordered_map<std::string, WorkerHandler>& workerHandlers, std::unordered_map<std::string, CartHandler>& cartHandlers, lux::Player& player);
 };
