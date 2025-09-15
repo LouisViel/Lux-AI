@@ -22,7 +22,7 @@ void CreateCartStrategy::start()
     ACCESS_OUTPUT;
     const lux::CityTile* tile = handler->getTile();
     luxOutput.push_back(tile->buildCart());
-    handler->createdCart++;
+    handler->cartCreated++;
 }
 
 void CreateCartStrategy::update(int turnId)

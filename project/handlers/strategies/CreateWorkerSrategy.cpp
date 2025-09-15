@@ -22,7 +22,7 @@ void CreateWorkerSrategy::start()
     ACCESS_OUTPUT;
     const lux::CityTile* tile = handler->getTile();
     luxOutput.push_back(tile->buildWorker());
-    handler->createdWorker++;
+    handler->workerCreated++;
 }
 
 void CreateWorkerSrategy::update(int turnId)

@@ -100,22 +100,23 @@ bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrU
 
 	// Sort Actions in cost order
 	std::vector<std::shared_ptr<AgentAction>> sortedActions(actions.begin(), actions.end());
+	
 	std::sort(sortedActions.begin(), sortedActions.end(),
 		[](const std::shared_ptr<AgentAction>& a, const std::shared_ptr<AgentAction>& b) {
 			return a->getCost() < b->getCost();
 	});
-
+	return false;
 	// Check all actions if there is a path to fulffill parent
 	for (const std::shared_ptr<AgentAction>& action : sortedActions) {
 
 		// Remove required effects already fullfilled (RemoveWhere)
 		WeakPtrUnorderedSet<AgentBelief>& requiredEffects = parent->getRequiredEffects();
-		for (auto it = requiredEffects.begin(); it != requiredEffects.end(); /* nothing */) {
+		for (auto it = requiredEffects.begin(); it != requiredEffects.end();) {
 			const std::shared_ptr<AgentBelief> ptr = it->lock();
 			if (ptr && ptr->evaluate()) it = requiredEffects.erase(it);
 			else ++it;
 		}
-
+		
 		// If there are no required effects to fullfill, plan is finished
 		if (requiredEffects.size() == 0) return true;
 
@@ -134,7 +135,7 @@ bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrU
 			WeakPtrUnorderedSet<AgentBelief> newRequiredEffects = requiredEffects; // copy
 			
 			// Remove (ExceptWith) required effects the Action will fullfill
-			for (auto it = newRequiredEffects.begin(); it != newRequiredEffects.end(); /* nothing */) {
+			for (auto it = newRequiredEffects.begin(); it != newRequiredEffects.end(); ) {
 				if (actionEffects.find(*it) != actionEffects.end())
 					it = newRequiredEffects.erase(it);
 				else ++it;
@@ -169,7 +170,7 @@ bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrU
 				parent->getLeaves().push_back(std::move(newNode));
 
 				// Remove from requiredEffects newNode's action preconditions (ExceptWith)
-				for (auto it = refreshedRequiredEffects.begin(); it != refreshedRequiredEffects.end(); /* nothing */) {
+				for (auto it = refreshedRequiredEffects.begin(); it != refreshedRequiredEffects.end(); ) {
 					if (actionPreconditions.find(*it) != actionPreconditions.end())
 						it = refreshedRequiredEffects.erase(it);
 					else ++it;
@@ -184,3 +185,4 @@ bool GoapPlanner::findPath(const std::shared_ptr<Node>& parent, const SharedPtrU
 	// Did not found a path
 	return false;
 }
+
